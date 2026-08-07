@@ -1,0 +1,49 @@
+/**
+ * Daddy Bear design tokens — canonical source for Tailwind v4.
+ *
+ * Tailwind v4 reads theme values from CSS custom properties inside an
+ * `@theme` block (no tailwind.config.ts). Every variable declared here
+ * becomes a utility automatically: --color-navy-900 -> bg-navy-900,
+ * text-navy-900, border-navy-900, etc. --font-display -> font-display.
+ *
+ * This file is imported once, from app/globals.css. Do not redeclare
+ * these values elsewhere — components should only ever reference the
+ * utility classes generated from here.
+ *
+ * design-system/tokens.ts mirrors the raw hex values for the few JS
+ * contexts that need them directly (theme-color meta, generated OG
+ * images). Keep both in sync by hand; the palette is intentionally small.
+ */
+
+@theme {
+  /* Navy — brand primary. 950/900 for large dark surfaces (hero, footer),
+     700 for borders/dividers on navy, 500 for muted text on navy. */
+  --color-navy-950: #0f1b30;
+  --color-navy-900: #17253f;
+  --color-navy-700: #2c3e63;
+  --color-navy-500: #62759e;
+
+  /* Cream — brand secondary, the warm light surface. 50 is the page
+     background, 100/200 step up for alternating section/card backgrounds. */
+  --color-cream-50: #fbf7ee;
+  --color-cream-100: #f4efe1;
+  --color-cream-200: #eae0c8;
+
+  /* Gold — accent only. Reserve for CTAs, eyebrow labels, key numerals,
+     dividers. Never a large fill — it loses restraint at scale. */
+  --color-gold-400: #d9b166;
+  --color-gold-500: #c2953a;
+  --color-gold-600: #9c7527;
+
+  /* Ink — near-black text color, warmer than pure black to match the
+     cream surfaces it usually sits on. */
+  --color-ink: #201d17;
+
+  /* Typography */
+  --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Radii */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+}

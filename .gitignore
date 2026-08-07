@@ -1,0 +1,11 @@
+# Cross-cutting rules for the whole repo. frontend/.gitignore (and eventually
+# backend/.gitignore) hold their own app-specific rules on top of these.
+
+.DS_Store
+Thumbs.db
+*.log
+
+# backend/ isn't scaffolded yet, but this is here so its node_modules/.env
+# are ignored the moment it is, without needing to remember to add it then.
+backend/node_modules
+backend/.env*
