@@ -19,5 +19,10 @@ The brief is direct about this: *"Navy, cream and gold, restraint over noise, wa
 ## How to apply it
 
 - Reuse Black Market's *structural* confidence — full-bleed sections, one clear action per section, a real design system instead of default template styling — documented in `04-components/`.
-- Never reuse its *urgency* devices for Phase 1. No countdown timer on the holding site: Phase 1 is an invitation to follow a story, not a race against an event clock. (A countdown may earn its place later, for a specific screening date in Phase 2 — that's a Phase 2 design decision, not a Phase 1 default.)
 - Photography and imagery should feel real and warm, not high-contrast/graphic — see `05-imagery-motion.md`.
+
+### The one exception: the countdown
+
+Phase 1 does use a countdown (`components/Countdown.tsx`, on Home) — an earlier version of this document ruled that out entirely as an urgency device borrowed from Black Market's tone. The distinction that changed it: Black Market's countdown counts down to a manufactured event (a record attempt built specifically to need a clock); ours counts down to something that's true regardless of whether we display it — principal photography starting. That's information, not hype, so it passes the working test above: it would still make sense read aloud at a family screening ("filming starts in six days").
+
+Kept restrained on purpose: quiet navy-950 card, no "claim your seat" framing, numerals rather than a headline, and it switches to a plain sentence once the date arrives rather than sitting at `00:00:00:00`. If a future countdown target is ever a manufactured deadline rather than a real one, that's a sign it doesn't belong here.

@@ -1,10 +1,15 @@
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { Countdown } from '@/components/Countdown';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { JournalCard } from '@/components/JournalCard';
 import { getJournalEntries } from '@/lib/journal';
+import {
+  PRINCIPAL_PHOTOGRAPHY_START_ISO,
+  PRINCIPAL_PHOTOGRAPHY_START_LABEL,
+} from '@/lib/production-dates';
 
 const PILLARS = [
   {
@@ -34,9 +39,9 @@ export default async function HomePage() {
           A film about fathers who show up.
         </p>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
-          Daddy Bear is a film, a brand and a mission. Principal photography is underway — join the
-          list now and follow every step of the production, from the first day on set to opening
-          night.
+          Daddy Bear is a film, a brand and a mission. Principal photography begins{' '}
+          {PRINCIPAL_PHOTOGRAPHY_START_LABEL} — join the list now and follow every step of the
+          production, from the first day on set to opening night.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button href="#join" tone="onNavy" showArrow>
@@ -48,7 +53,19 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="What Daddy Bear is">
+      <Section tone="cream" eyebrow="Countdown to production" className="py-12 sm:py-16">
+        <div className="mx-auto max-w-md">
+          <Countdown
+            target={PRINCIPAL_PHOTOGRAPHY_START_ISO}
+            arrivedMessage="Cameras are rolling. Follow it all in the Journal."
+          />
+          <p className="mt-4 text-center text-sm text-ink/70">
+            Principal photography begins {PRINCIPAL_PHOTOGRAPHY_START_LABEL}.
+          </p>
+        </div>
+      </Section>
+
+      <Section tone="cream-alt" eyebrow="What Daddy Bear is">
         <h2 className="max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
           One film. One mission. One growing community.
         </h2>
@@ -63,7 +80,7 @@ export default async function HomePage() {
       </Section>
 
       {entries.length > 0 ? (
-        <Section tone="cream-alt" eyebrow="From the set">
+        <Section tone="cream" eyebrow="From the set">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
               Follow the shoot

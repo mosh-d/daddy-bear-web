@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { PRINCIPAL_PHOTOGRAPHY_START_LABEL } from '@/lib/production-dates';
 
 export const metadata: Metadata = {
   title: 'The Film',
@@ -17,9 +18,9 @@ export default function FilmPage() {
           A story about fathers who show up.
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
-          Principal photography is underway. The trailer, full synopsis and cast will land here as
-          post-production delivers them — the Journal is the fastest way to watch that happen in
-          real time.
+          Principal photography begins {PRINCIPAL_PHOTOGRAPHY_START_LABEL}. The trailer, full
+          synopsis and cast will land here as post-production delivers them — the Journal is the
+          fastest way to watch that happen in real time.
         </p>
         <div className="mt-8">
           <Button href="/journal" tone="onNavy" showArrow>

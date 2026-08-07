@@ -8,7 +8,7 @@
 
 ## Motion
 
-- Subtle and functional only: fade/slide-in on scroll for section entrances (small, ~150–250ms, `ease-out`), hover states on buttons/links, no parallax, no auto-playing carousels, nothing that competes with a countdown-style urgency device.
+- Subtle and functional only: fade/slide-in on scroll for section entrances (small, ~150–250ms, `ease-out`), hover states on buttons/links, no parallax, no auto-playing carousels. The Home countdown (see `00-brand-voice.md`) is the one element allowed to visibly change on its own — its numerals tick quietly once a second, nothing about it flashes or competes for attention.
 - Respect `prefers-reduced-motion` — disable entrance animation for users who request it.
 - No motion should delay content becoming visible or interactive; this is a conversion site on slow connections first.
 
