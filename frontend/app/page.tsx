@@ -54,12 +54,12 @@ export default async function HomePage() {
       </Section>
 
       <Section tone="cream" eyebrow="Countdown to production" className="py-12 sm:py-16">
-        <div className="mx-auto max-w-md">
+        <div className="mx-auto max-w-md sm:mx-0">
           <Countdown
             target={PRINCIPAL_PHOTOGRAPHY_START_ISO}
             arrivedMessage="Cameras are rolling. Follow it all in the Journal."
           />
-          <p className="mt-4 text-center text-sm text-ink/70">
+          <p className="mt-4 text-center text-sm text-ink/70 sm:text-left">
             Principal photography begins {PRINCIPAL_PHOTOGRAPHY_START_LABEL}.
           </p>
         </div>

@@ -55,7 +55,7 @@ export function Countdown({
       {!timeLeft ? (
         <div className="h-16" aria-hidden="true" />
       ) : arrived ? (
-        <p className="text-center text-lg font-semibold text-gold-400">{arrivedMessage}</p>
+        <p className="text-center text-lg font-semibold text-gold-400 sm:text-left">{arrivedMessage}</p>
       ) : (
         <div className="grid grid-cols-4 gap-3 sm:gap-6" role="timer" aria-live="off">
           {UNITS.map(({ key, label }) => (
