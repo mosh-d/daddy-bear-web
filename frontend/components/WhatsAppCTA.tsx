@@ -1,10 +1,9 @@
 import { WhatsAppIcon } from './Icons';
-
-const WHATSAPP_CHANNEL_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL;
+import { WHATSAPP_CHANNEL_URL } from '@/lib/site';
 
 /**
- * Static "join our WhatsApp Channel" link — the brief's Phase 1 WhatsApp
- * requirement. Business API (order confirmations) is Phase 2/3, not this.
+ * The "join our WhatsApp Channel" link. Click-to-chat and share links live
+ * in WhatsAppLinks.tsx.
  * Renders nothing if the channel URL hasn't been configured yet, rather
  * than shipping a dead link.
  */

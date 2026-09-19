@@ -22,18 +22,18 @@ function timeLeftUntil(target: Date): TimeLeft {
 }
 
 /**
- * Counts down to a real production milestone (e.g. principal photography
- * starting) — not manufactured event-marketing urgency. See
- * design-system/00-brand-voice.md for why that distinction is the reason
- * this component exists at all. Renders nothing until mounted, so the
- * server-rendered HTML and the client's first paint always match (a ticking
- * value can't be computed identically on both).
+ * Counts down to a real, dated event (on Home: the next screening). Not
+ * manufactured event-marketing urgency. See design-system/00-brand-voice.md
+ * for why that distinction is the reason this component exists at all.
+ * Renders nothing until mounted, so the prerendered HTML and the client's
+ * first paint always match (a ticking value can't be computed identically
+ * on both).
  */
 export function Countdown({
   target,
   arrivedMessage,
 }: {
-  /** ISO 8601 date string, e.g. '2026-08-15T00:00:00+01:00' (WAT). */
+  /** ISO 8601 date string, e.g. '2026-11-07T16:00:00+01:00' (WAT). */
   target: string;
   /** Shown once the target date has passed, in place of the numbers. */
   arrivedMessage: string;

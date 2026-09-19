@@ -1,0 +1,57 @@
+[
+  {
+    "id": "sample-ibadan-2026-09-12",
+    "city": "Ibadan",
+    "venue": "Sample venue (replace before launch)",
+    "address": "Replace with the real address, Ibadan",
+    "date": "2026-09-12",
+    "time": "15:00",
+    "ticketUrl": null,
+    "soldAtDoor": true,
+    "status": "past"
+  },
+  {
+    "id": "sample-lagos-2026-11-07",
+    "city": "Lagos",
+    "venue": "Sample venue (replace before launch)",
+    "address": "Replace with the real address, Lagos",
+    "date": "2026-11-07",
+    "time": "16:00",
+    "ticketUrl": "https://tix.africa/",
+    "soldAtDoor": false,
+    "status": "upcoming"
+  },
+  {
+    "id": "sample-abuja-2026-11-14",
+    "city": "Abuja",
+    "venue": "Sample venue (replace before launch)",
+    "address": "Replace with the real address, Abuja",
+    "date": "2026-11-14",
+    "time": "17:30",
+    "ticketUrl": "https://tix.africa/",
+    "soldAtDoor": false,
+    "status": "upcoming"
+  },
+  {
+    "id": "sample-kano-2026-11-21",
+    "city": "Kano",
+    "venue": "Sample venue (replace before launch)",
+    "address": "Replace with the real address, Kano",
+    "date": "2026-11-21",
+    "time": "16:00",
+    "ticketUrl": null,
+    "soldAtDoor": true,
+    "status": "upcoming"
+  },
+  {
+    "id": "sample-lagos-2026-12-05",
+    "city": "Lagos",
+    "venue": "Sample venue (replace before launch)",
+    "address": "Replace with the real address, Lagos",
+    "date": "2026-12-05",
+    "time": "18:00",
+    "ticketUrl": "https://tix.africa/",
+    "soldAtDoor": false,
+    "status": "upcoming"
+  }
+]

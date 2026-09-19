@@ -13,6 +13,10 @@ Tailwind's default 4px base scale is used as-is (`1` = 0.25rem = 4px) — no cus
 
 Default Tailwind breakpoints (`sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px). Design and build mobile-first: base (unprefixed) classes target a small Android phone on a slow connection — the brief's actual audience — and breakpoints only ever *add* refinement upward, never fix a broken mobile layout after the fact.
 
+**Supported widths:** 320px (the smallest phones still in use) up to wide desktops. Every page is checked at 320, 360, 390, 414, 768, 1024, 1280 and 1536px: no sideways scrolling, nothing past the screen edge, no wrapped button labels, and 44px tap targets on anything tappable. The header switches from burger menu to inline links at `md`.
+
+Safety nets for content added later: `body` has `overflow-wrap: break-word`, so a pasted URL or email address wraps instead of widening the page; tables in Journal posts scroll inside their own box; images never exceed their container.
+
 ## Section rhythm
 
 - Vertical padding per section: `py-16 sm:py-24` — generous enough to read as "unhurried," not so large that a phone user scrolls forever past mostly-empty space.

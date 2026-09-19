@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
 import { Section } from '@/components/Section';
 import { JournalCard } from '@/components/JournalCard';
-import { getJournalEntries } from '@/lib/journal';
-
-export const revalidate = 60;
+import { getJournalPosts } from '@/lib/journal';
 
 export const metadata: Metadata = {
   title: 'Journal',
-  description: 'Real-time updates from the Daddy Bear production and screening circuit.',
+  description: 'Updates from the Daddy Bear production and screening circuit.',
 };
 
-export default async function JournalPage() {
-  const entries = await getJournalEntries();
+export default function JournalPage() {
+  const posts = getJournalPosts();
 
   return (
     <>
@@ -20,22 +18,20 @@ export default async function JournalPage() {
           Follow the production, day by day.
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
-          Text, photos and video from set — posted by the team as it happens, no waiting for a
-          developer.
+          Text, photos and video from set and from the screening circuit, as it happens.
         </p>
       </Section>
 
       <Section tone="cream">
-        {entries.length > 0 ? (
+        {posts.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {entries.map((entry) => (
-              <JournalCard key={entry.slug} entry={entry} />
+            {posts.map((post) => (
+              <JournalCard key={post.slug} post={post} />
             ))}
           </div>
         ) : (
           <p className="text-base text-ink/70">
-            The first entry goes up when the shoot begins. Join the list on the home page and
-            we&apos;ll let you know.
+            The first entry is on its way. Join the list below and we&apos;ll let you know when it goes up.
           </p>
         )}
       </Section>

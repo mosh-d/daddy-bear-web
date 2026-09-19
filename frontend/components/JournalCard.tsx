@@ -1,24 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from './Badge';
-import type { JournalEntry } from '@/lib/journal';
+import { formatDate } from '@/lib/dates';
+import type { JournalPostMeta } from '@/lib/journal';
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-}
-
-export function JournalCard({ entry }: { entry: JournalEntry }) {
+export function JournalCard({ post }: { post: JournalPostMeta }) {
   return (
     <article className="overflow-hidden rounded-card border border-cream-200 bg-cream-50">
-      <div className="relative aspect-[16/9] bg-navy-700">
-        {entry.image ? (
+      <div className="relative aspect-video bg-navy-700">
+        {post.cover ? (
           <Image
-            src={entry.image}
-            alt={entry.imageAlt ?? ''}
+            src={post.cover}
+            alt={post.coverAlt ?? ''}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
@@ -31,20 +24,20 @@ export function JournalCard({ entry }: { entry: JournalEntry }) {
       </div>
       <div className="space-y-3 p-6">
         <div className="flex items-center gap-3 text-xs text-ink/60">
-          <time dateTime={entry.date}>{formatDate(entry.date)}</time>
-          {entry.tag ? <Badge>{entry.tag}</Badge> : null}
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          {post.tag ? <Badge>{post.tag}</Badge> : null}
         </div>
         <h3 className="font-display text-lg font-semibold text-navy-900">
-          <Link href={`/journal/${entry.slug}`} className="hover:text-gold-600">
-            {entry.title}
+          <Link href={`/journal/${post.slug}`} className="hit-area inline-block hover:text-gold-600">
+            {post.title}
           </Link>
         </h3>
-        <p className="text-sm leading-relaxed text-ink/80">{entry.excerpt}</p>
+        <p className="text-sm leading-relaxed text-ink/80">{post.excerpt}</p>
         <Link
-          href={`/journal/${entry.slug}`}
-          className="inline-block text-sm font-semibold text-navy-900 underline-offset-4 hover:text-gold-600 hover:underline"
+          href={`/journal/${post.slug}`}
+          className="hit-area inline-block text-sm font-semibold text-navy-900 underline-offset-4 hover:text-gold-600 hover:underline"
         >
-          Read the update
+          Read the update<span className="sr-only">: {post.title}</span>
         </Link>
       </div>
     </article>

@@ -13,6 +13,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 ) {
   const inputId = id ?? rest.name;
   const labelClasses = tone === 'onNavy' ? 'text-cream-50' : 'text-navy-900';
+  // red-600 fails contrast on navy; red-300 is the readable equivalent there.
+  const errorClasses = tone === 'onNavy' ? 'text-red-300' : 'text-red-600';
   return (
     <div className="text-left">
       <label htmlFor={inputId} className={`mb-1.5 block text-sm font-semibold ${labelClasses}`}>
@@ -29,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         {...rest}
       />
       {error ? (
-        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-red-600">
+        <p id={`${inputId}-error`} className={`mt-1.5 text-sm ${errorClasses}`}>
           {error}
         </p>
       ) : null}

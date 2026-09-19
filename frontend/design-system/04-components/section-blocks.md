@@ -15,3 +15,5 @@ The difference from Black Market: **two tones, not four**, restrained per `01-co
 ## Rule
 
 One primary `Button` per `Section`, maximum. If a section needs two actions, one must be `variant="secondary"` or `"ghost"` — this is the code-level enforcement of the brand-voice rule "one idea per screen."
+
+The one exception is a list of like items where each item's action *is* the point of the section: each `ScreeningCard` carries its own primary **Buy tickets**. It's still one action per item, and the section's own CTA (e.g. "All screenings") stays ghost.

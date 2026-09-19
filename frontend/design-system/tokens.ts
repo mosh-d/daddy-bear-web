@@ -22,5 +22,6 @@ export const colors = {
 
 export const fonts = {
   display: "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
+  displayItalic: "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
   body: "'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif",
 } as const;

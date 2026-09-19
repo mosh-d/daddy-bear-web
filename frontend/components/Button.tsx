@@ -12,7 +12,9 @@ export type ButtonTone = 'onNavy' | 'onCream';
 const base =
   'inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
 
-const shapeSolid = 'justify-center rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide';
+// whitespace-nowrap: a pill label that wraps ("BUY / TICKETS") reads as broken.
+const shapeSolid =
+  'justify-center whitespace-nowrap rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide';
 
 const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
   primary: {
@@ -24,8 +26,8 @@ const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
     onCream: `${shapeSolid} border border-navy-900 text-navy-900 hover:bg-navy-900/5 focus-visible:ring-offset-cream-50`,
   },
   ghost: {
-    onNavy: 'text-sm font-medium text-cream-50 underline-offset-4 hover:underline',
-    onCream: 'text-sm font-medium text-navy-900 underline-offset-4 hover:underline',
+    onNavy: 'hit-area text-sm font-medium text-cream-50 underline-offset-4 hover:underline',
+    onCream: 'hit-area text-sm font-medium text-navy-900 underline-offset-4 hover:underline',
   },
 };
 

@@ -1,24 +1,36 @@
 import type { Metadata } from 'next';
 import { Fraunces, Inter } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import { colors } from '@/design-system/tokens';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { Analytics } from '@/components/Analytics';
+import { SITE_URL } from '@/lib/site';
 
+// The display face is only ever set upright at 600 (headings) or italic at
+// 400 (the one supporting line under a hero title), so each loads as a
+// single static weight rather than a full variable font. Only the upright
+// face is preloaded; browsers fetch the italic only on pages that use it.
+// See design-system/02-typography.md.
 const fraunces = Fraunces({
   variable: '--font-display',
   subsets: ['latin'],
-  style: ['normal', 'italic'],
+  weight: '600',
+  style: 'normal',
+});
+
+const frauncesItalic = Fraunces({
+  variable: '--font-display-italic',
+  subsets: ['latin'],
+  weight: '400',
+  style: 'italic',
+  preload: false,
 });
 
 const inter = Inter({
   variable: '--font-body',
   subsets: ['latin'],
 });
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://daddybear.ng';
-const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -50,19 +62,12 @@ export const viewport = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesItalic.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-cream-50 font-body text-ink antialiased">
         <NavBar />
         <main className="flex-1">{children}</main>
         <Footer />
-        {PLAUSIBLE_DOMAIN ? (
-          <Script
-            defer
-            data-domain={PLAUSIBLE_DOMAIN}
-            src="https://plausible.io/js/script.js"
-            strategy="afterInteractive"
-          />
-        ) : null}
+        <Analytics />
       </body>
     </html>
   );

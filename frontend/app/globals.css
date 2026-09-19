@@ -4,6 +4,27 @@
 body {
   background: var(--color-cream-50);
   color: var(--color-ink);
+  /* A long unbroken string (a pasted URL, an email address) wraps instead of
+     pushing the page wider than a phone screen. */
+  overflow-wrap: break-word;
+}
+
+/*
+ * Enlarges a small standalone link's tap area to about 44px tall, the
+ * comfortable minimum on a phone, without changing the layout: the extra
+ * area is an invisible pseudo-element around the link. Use on links whose
+ * text is only ~20px tall (ghost buttons, "Share on WhatsApp", nav links).
+ * Not for links inside running text, or in tightly stacked lists where the
+ * enlarged areas would overlap (give those real padding instead).
+ */
+@utility hit-area {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -0.75rem -0.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

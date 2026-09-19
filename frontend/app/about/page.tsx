@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Section } from '@/components/Section';
 import { Card } from '@/components/Card';
 import { Badge } from '@/components/Badge';
+import { Button } from '@/components/Button';
+import { WhatsAppChat } from '@/components/WhatsAppLinks';
 
 export const metadata: Metadata = {
   title: 'About & Mission',
@@ -17,22 +19,22 @@ export default function AboutPage() {
           Who made this, and why.
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
-          Daddy Bear began with three women, a grant, and a mission: to celebrate the fathers who
-          show up — quietly, consistently, without asking for recognition. Cardinal Productions
-          Limited exists to tell that story well, and to build the audience and the platform that
-          keeps telling it long after the credits roll.
+          Daddy Bear began with three women, a grant, and a mission: to celebrate the fathers who show up,
+          quietly, consistently, without asking for recognition. Cardinal Productions Limited exists to
+          tell that story well, and to build the audience and the platform that keeps telling it long
+          after the credits roll.
         </p>
       </Section>
 
       <Section tone="cream" eyebrow="The mission">
         <Card className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-gold-600">
-            Full mission story — from Cardinal Productions
+            Full mission story from Cardinal Productions
           </p>
           <p className="mt-2 text-base leading-relaxed text-ink/80">
-            This is where the complete origin story goes once Cardinal delivers it: how the grant
-            came together, why fatherhood, and what the team wants audiences to feel walking out of
-            a screening. Placeholder copy only — nothing here should be treated as final.
+            This is where the complete origin story goes once Cardinal delivers it: how the grant came
+            together, why fatherhood, and what the team wants audiences to feel walking out of a
+            screening. Placeholder copy only; nothing here should be treated as final.
           </p>
         </Card>
       </Section>
@@ -44,9 +46,27 @@ export default function AboutPage() {
         </div>
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink/70">
           Cardinal Productions Limited is based in Gwagwalada, FCT, Abuja. Full team credits and
-          photography land here once supplied — the press and partners page grows from this
-          section as those relationships form.
+          photography land here once supplied.
         </p>
+      </Section>
+
+      <Section tone="cream" eyebrow="Press & partners">
+        <h2 className="max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+          Writing about Daddy Bear, or want to work with us?
+        </h2>
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">
+          We&apos;re glad to hear from journalists, brands and organisations who share the mission, whether
+          that&apos;s coverage, a partnership or a screening for your community.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center gap-6">
+          <Button href="/screenings/host" variant="secondary">
+            Host a screening
+          </Button>
+          <WhatsAppChat
+            message="Hello Daddy Bear team, I'm getting in touch about press or a partnership."
+            label="Chat with us on WhatsApp"
+          />
+        </div>
       </Section>
     </>
   );

@@ -41,6 +41,7 @@
 
   /* Typography */
   --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-display-italic: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Radii */
