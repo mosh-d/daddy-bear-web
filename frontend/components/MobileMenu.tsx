@@ -74,7 +74,9 @@ export function MobileMenu() {
         onClick={() => setOpen((isOpen) => !isOpen)}
         className="-my-2 -mr-2 flex h-11 w-11 items-center justify-center rounded-pill text-cream-50 transition-colors hover:text-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
       >
-        {open ? <CloseIcon /> : <MenuIcon />}
+        <span className="transition-transform duration-200 ease-out" style={{ rotate: open ? '90deg' : '0deg' }}>
+          {open ? <CloseIcon /> : <MenuIcon />}
+        </span>
         <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
       </button>
 
@@ -89,6 +91,7 @@ export function MobileMenu() {
 
       <div
         id={panelId}
+        data-menu-panel={open ? 'open' : 'closed'}
         // Any link tapped inside the panel closes it, including one to the
         // page already open (which doesn't change the route).
         onClick={(event) => (event.target as HTMLElement).closest('a') && setOpen(false)}

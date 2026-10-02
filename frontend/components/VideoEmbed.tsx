@@ -46,7 +46,7 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
             sizes="(min-width: 768px) 720px, 100vw"
             className="object-cover opacity-80 transition-opacity group-hover:opacity-100"
           />
-          <span className="relative flex h-16 w-16 items-center justify-center rounded-pill bg-gold-500 text-navy-900 shadow-lg transition-colors group-hover:bg-gold-400">
+          <span className="relative flex h-16 w-16 items-center justify-center rounded-pill bg-gold-500 text-navy-900 shadow-lg transition-[background-color,scale] duration-200 ease-out group-hover:scale-110 group-hover:bg-gold-400">
             <PlayIcon className="ml-1 h-7 w-7" />
           </span>
           <span className="sr-only">Play video: {title}</span>

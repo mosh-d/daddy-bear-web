@@ -9,12 +9,15 @@ export type ButtonTone = 'onNavy' | 'onCream';
 // (padding, radius, casing) instead of overriding base — conflicting
 // Tailwind utilities (e.g. rounded-pill vs rounded-none) don't resolve by
 // className string order, so partial overrides aren't safe to rely on.
+// Motion: lifts a little under the cursor and presses down when tapped, so
+// an action feels physical. Transform-only, so it stays smooth on a cheap
+// phone. Reduced motion collapses the durations (app/globals.css).
 const base =
-  'inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
+  'inline-flex items-center gap-2 transition-[color,background-color,border-color,box-shadow,translate] duration-200 ease-out active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
 
 // whitespace-nowrap: a pill label that wraps ("BUY / TICKETS") reads as broken.
 const shapeSolid =
-  'justify-center whitespace-nowrap rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide';
+  'justify-center whitespace-nowrap rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy-950/20 [&_svg]:transition-transform [&_svg]:duration-200 hover:[&_svg]:translate-x-1';
 
 const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
   primary: {
@@ -26,8 +29,8 @@ const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
     onCream: `${shapeSolid} border border-navy-900 text-navy-900 hover:bg-navy-900/5 focus-visible:ring-offset-cream-50`,
   },
   ghost: {
-    onNavy: 'hit-area text-sm font-medium text-cream-50 underline-offset-4 hover:underline',
-    onCream: 'hit-area text-sm font-medium text-navy-900 underline-offset-4 hover:underline',
+    onNavy: 'hit-area underline-grow text-sm font-medium text-cream-50 hover:text-gold-400',
+    onCream: 'hit-area underline-grow text-sm font-medium text-navy-900 hover:text-gold-600',
   },
 };
 

@@ -10,18 +10,14 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://daddybear.
 
 export const CARDINAL_STUDIO_URL = process.env.NEXT_PUBLIC_CARDINAL_STUDIO_URL || 'https://cardinalstudio.ng';
 
+/** Describes public/og.png, the picture shown when a link to the site is shared. */
+export const SHARE_IMAGE_ALT = 'Daddy Bear — a film about fathers who show up';
+
 export const WHATSAPP_CHANNEL_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL || undefined;
 
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || undefined;
 
 export const CF_ANALYTICS_TOKEN = process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN || undefined;
-
-/** Kit's hosted form endpoint. Accepts the form's full action URL or its bare numeric ID. */
-export const KIT_FORM_ACTION = (() => {
-  const raw = process.env.NEXT_PUBLIC_KIT_FORM_ACTION?.trim();
-  if (!raw) return undefined;
-  return /^\d+$/.test(raw) ? `https://app.kit.com/forms/${raw}/subscriptions` : raw;
-})();
 
 /** Tally form. Accepts the form ID or any tally.so/r/… or tally.so/embed/… link. */
 const TALLY_FORM_ID = (() => {

@@ -24,13 +24,13 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
   return (
     <article
       id={screening.id}
-      className={`grid scroll-mt-20 grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 rounded-card border border-cream-200 bg-cream-50 p-5 sm:gap-x-6 sm:p-6 ${
+      className={`group grid scroll-mt-20 grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 rounded-card border border-cream-200 bg-cream-50 p-5 transition-[translate,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-navy-950/10 sm:gap-x-6 sm:p-6 ${
         past ? 'opacity-70' : ''
       }`}
     >
       <div
         aria-hidden="true"
-        className="flex w-16 flex-col items-center self-start rounded-card bg-navy-900 py-3 text-cream-50"
+        className="flex w-16 flex-col items-center self-start rounded-card bg-navy-900 py-3 text-cream-50 transition-colors duration-200 group-hover:bg-navy-950"
       >
         <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-400">{weekday}</span>
         <span className="mt-1 font-display text-3xl font-semibold leading-none">{day}</span>

@@ -22,6 +22,8 @@ Behaviour: opens and closes in ~200ms (fade + 8px slide, `ease-out`; instant und
 
 ## Footer
 
-`bg-navy-950`, contains: wordmark, one-line mission restatement, newsletter form, WhatsApp channel CTA, WhatsApp click-to-chat, a footer link list (including Host a screening, which isn't in the header), social links (to add once Cardinal provides handles), and a link back to **cardinalstudio.ng** — the brief requires the two sites to cross-link ("cardinalstudio.ng remains the company's home and links to the brand site prominently. The two are connected, not merged"), so daddybear.ng must return the favor from every page.
+`bg-navy-950`, contains: wordmark, one-line mission restatement, the social accounts (icon links, 44px targets), WhatsApp channel CTA, WhatsApp click-to-chat, a one-line newsletter link, the contact email, a link list (including Host a screening, Privacy and Terms, none of which are in the header), the funder credit, and a link back to **cardinalstudio.ng** — the brief requires the two sites to cross-link ("cardinalstudio.ng remains the company's home and links to the brand site prominently. The two are connected, not merged"), so daddybear.ng must return the favor from every page.
 
 The footer links wrap onto several rows on a phone, so each is padded to ~41px tall rather than using `hit-area` (enlarged areas on stacked rows would overlap).
+
+The footer is the only place the social accounts appear, and it carries the newsletter as a single line of text rather than a block of its own. Home's Join section is where the newsletter gets real estate: the embedded signup box and a link beside it. Giving the footer its own heading, blurb and gold signup button made the bottom of Home read as two stacked footers, with two buttons to the same place.

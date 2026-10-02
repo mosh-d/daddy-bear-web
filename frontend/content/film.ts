@@ -1,7 +1,8 @@
 /**
- * Everything on The Film page. Fill fields in as post-production delivers
- * them; anything left empty shows a "coming soon" note or is hidden, so
- * the page never looks broken. See CONTENT.md.
+ * Everything on The Film page. Synopsis and credits are from Cardinal's
+ * Website Content & Information Pack. Fill the remaining fields in as
+ * post-production delivers them; anything left empty shows a "coming soon"
+ * note or is hidden, so the page never looks broken. See CONTENT.md.
  */
 
 type Image = {
@@ -42,11 +43,18 @@ export type Film = {
 export const film: Film = {
   logline: 'A story about fathers who show up.',
   intro:
-    'Filmed in 2026 and coming to screenings across Nigeria. The trailer, synopsis and cast land here as post-production delivers them.',
+    'A Nigerian family drama set in Abuja. The trailer, cast and stills land here as post-production delivers them.',
   trailerUrl: '',
-  synopsis: [],
+  synopsis: [
+    'Daddy Bear is a Nigerian family drama set in Abuja. After losing his wife during childbirth, Fahd refuses to remarry and has to learn to raise his newborn daughter and his pre-teen daughter while navigating grief, work and the everyday demands of family life.',
+  ],
   cast: [],
-  credits: [{ role: 'Founder, Producer & Co-Director', name: 'Korede Azeez' }],
+  credits: [
+    { role: 'Writer', name: 'Hajarat Abiodun Alli' },
+    { role: 'Co-Directors', name: 'Hajarat Abiodun Alli and Korede Azeez' },
+    { role: 'Producer', name: 'Fulfilment “Fuchi” Nwaturuocha' },
+    { role: 'Production Company', name: 'Cardinal Productions' },
+  ],
   world: {
     paragraphs: [],
     images: [],

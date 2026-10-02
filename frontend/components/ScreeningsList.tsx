@@ -129,7 +129,10 @@ export function ScreeningsList({ screenings, buildDay }: { screenings: Screening
       </p>
 
       {upcoming.length > 0 ? (
-        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <div
+          key={`${activeCity}-${activeMonth}`}
+          className="mt-4 grid animate-[var(--animate-fade)] gap-4 lg:grid-cols-2"
+        >
           {upcoming.map((screening) => (
             <ScreeningCard key={screening.id} screening={screening} />
           ))}

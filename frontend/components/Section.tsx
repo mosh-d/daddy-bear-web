@@ -31,16 +31,19 @@ export function Section({
   children: ReactNode;
 }) {
   return (
+    // `reveal` / `reveal-late` are the entrance motion (app/globals.css): the
+    // label arrives just before the content it introduces. The first section
+    // of a page animates on load, the rest as they scroll into view.
     <section id={id} className={`${TONE_CLASSES[tone]} py-16 sm:py-24 ${className}`}>
       <Container className={containerClassName}>
         {eyebrow ? (
           <p
-            className={`mb-3 text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm ${EYEBROW_TONE_CLASSES[tone]}`}
+            className={`reveal mb-3 text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm ${EYEBROW_TONE_CLASSES[tone]}`}
           >
             {eyebrow}
           </p>
         ) : null}
-        {children}
+        <div className="reveal reveal-late">{children}</div>
       </Container>
     </section>
   );

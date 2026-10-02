@@ -1,22 +1,30 @@
 # Forms
 
-Components: [`components/Input.tsx`](../../components/Input.tsx), [`components/NewsletterForm.tsx`](../../components/NewsletterForm.tsx).
+## Where forms live now
 
-## Pattern
+The site has no form of its own. Both places people submit something are hosted elsewhere:
 
-Forms we build use **React Hook Form + Zod**, validating in the browser before handing off to a third party (there's no API of our own to check again). The host-a-screening application is a Tally embed, so it follows Tally's own form styling inside its iframe.
+- **Newsletter** ([`components/NewsletterSignup.tsx`](../../components/NewsletterSignup.tsx)): Substack. It accepts no cross-origin posts, so a brand-styled form on this site could never submit — it links to Substack instead, and Home embeds Substack's own box ([`components/SubstackEmbed.tsx`](../../components/SubstackEmbed.tsx)) so most people don't leave. That embed is click-to-load: a facade in a reserved 220px box until tapped, because Substack's iframe is a few hundred KB that most visitors would never use. (Through September 2026 this was a custom Kit form, per the original brief; Cardinal's information pack named Substack as the platform, which rules out an inline form.)
+- **Host a screening** ([`components/TallyEmbed.tsx`](../../components/TallyEmbed.tsx)): a Tally iframe, styled by Tally inside its frame, with a fixed starting height so the page doesn't jump, and a plain link out for anyone whose browser blocks it.
 
-## Field anatomy
+Both are **one clear action, in the brand's voice, with the third party kept behind it** — never a form that looks like ours but fails silently.
 
-Label above field (never placeholder-as-label — placeholders are supplementary hint text only, since placeholder-only labels fail accessibility and disappear the moment a low-literacy or first-time user starts typing). Field: `bg-cream-50 border border-cream-200 rounded-card px-4 py-3 text-base`, focus ring `gold-500`. Error state: red-600 border + one-line error text below, referenced via `aria-describedby`.
+## If a form is ever built here
 
-## Newsletter capture specifically
+The pattern to follow, and what the removed Kit form did:
 
-- Present on every page (persistent footer placement) plus a dedicated section on Home — per the brief's non-negotiable #4 ("newsletter signup present on every page, not hidden on one").
-- Single email field + one consent checkbox ("...updates about the film, screenings and gifts. Unsubscribe anytime.") — minimal friction, matches "checkout/forms that work first time on a phone."
-- Optional first name, then email, then consent. Field names match Kit's (`email_address`).
-- Submits straight from the browser to Kit's hosted form endpoint (`lib/kit.ts`); there is no server of our own. Kit replies HTTP 200 even when it rejects a signup, so success is read from its JSON `status`, not the HTTP code. Success state replaces the form with a short confirmation (and a nudge to confirm by email, since Kit uses double opt-in), not a redirect, so the user stays on the page they were reading.
-- The `<form>` also carries Kit's URL as its native `action` with `method="post"`. That only matters before the page's JavaScript has loaded (seconds, on 3G): a submit in that window still reaches Kit instead of reloading the page with the email address in the URL.
-- Validation uses **Zod Mini** (`zod/mini`), not full Zod, because this form is on every page and full Zod added ~55KB of JavaScript to each one.
-- Field IDs come from `useId()`: the form appears twice on Home (Join section and footer), and fixed IDs made the second form's labels point at the first form's inputs.
-- The WhatsApp Channel CTA sits directly beside the newsletter form wherever it appears — the brief treats both as the same "capture the audience" job, not two separate asks.
+- **React Hook Form + Zod**, validating in the browser before handing anything to a third party; there is no API of our own to check again. Use `zod/mini` for anything that ships on every page — full Zod cost ~55KB gzipped per page.
+- **Label above the field**, never placeholder-as-label: placeholders are supplementary hint text only, since placeholder-only labels fail accessibility and vanish the moment someone starts typing.
+- Field: `bg-cream-50 border border-cream-200 rounded-card px-4 py-3 text-base`, focus ring `gold-500`. Error state: red border plus one line of error text below, tied to the field with `aria-describedby`, in `red-600` on cream and `red-300` on navy (red-600 fails contrast on navy).
+- **Unique field IDs per instance** (`useId`): a form that appears twice on a page, as the newsletter did, otherwise has two labels pointing at the same input.
+- **Progressive enhancement:** give the form the third party's own URL as its `action` and `method="post"`. On a slow connection the form is visible seconds before its JavaScript, and a submit in that window must still reach the service instead of reloading the page with the email address in the URL.
+- Success replaces the form with a short confirmation (`role="status"`), errors appear inline (`role="alert"`). Never a page reload.
+
+## Newsletter placement
+
+The newsletter is reachable from every page, per the brief's non-negotiable ("newsletter signup present on every page, not hidden on one"), but it only gets a section of its own on Home:
+
+- **Home, Join section:** the Substack embed, with a quiet link beside it for anyone who'd rather use Substack's own page. The WhatsApp Channel CTA sits alongside — the brief treats both as the same "capture the audience" job, not two separate asks.
+- **Every page, footer:** one line of text with a link, not a heading and a button. Repeating the full block there turned the bottom of Home into two near-identical panels.
+
+One button per destination: if a visitor can already subscribe in front of them, don't put a second gold button to the same place underneath.

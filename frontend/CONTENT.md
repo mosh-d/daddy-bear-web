@@ -89,6 +89,22 @@ The Home hero has one main button, and it changes with the season. In `content/h
 
 The hero paragraph ("the film in one paragraph") is in the same file.
 
+## Brand links, contact and the funder credit
+
+`content/links.ts` holds the Substack address, the social accounts, the contact email and the funder credit. Change one of these in that file and it updates everywhere on the site at once.
+
+- **Substack URL** feeds every "Join the list" button and the signup box on Home.
+- **Social links** are the footer icons. Paste the plain profile address (`https://www.instagram.com/daddybearfilm`), not the long one a share sheet gives you: those carry tracking codes that would follow every visitor and muddle the destination's own analytics.
+- **Funder credit** must stay in the exact wording Cardinal's pack requires: "Powered by CcHUB in Partnership with Africa No Filter". It shows in the footer and on About. Partner logos go beside the About one when supplied.
+
+## Terms and Privacy
+
+`content/legal.ts` holds both pages, section by section, in Cardinal's wording. Update `LEGAL_UPDATED` when the substance changes; it shows as "Last updated" on both pages. `{{EMAIL}}` becomes a link to the contact address, and `{{ANALYTICS}}` in the privacy text is replaced automatically with a sentence naming whichever analytics is switched on, so the policy can't drift from what the site actually loads.
+
+## The link-preview picture
+
+`public/og.png` (1200×630) is what appears when someone shares the site on WhatsApp or social media. It's a plain branded card for now — **replace it with Cardinal's key art when it arrives**, keeping the same name, size and format. A Journal post with a `cover` uses that cover instead.
+
 ## Page weight
 
 `npm run build` measures each page's initial download and fails if one goes over budget (limits are at the top of `scripts/check-budget.mjs`). Baseline on 2026-09-19, gzipped:

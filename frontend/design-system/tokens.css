@@ -47,4 +47,12 @@
   /* Radii */
   --radius-card: 1rem;
   --radius-pill: 999px;
+
+  /* Motion. One easing for everything: a soft decelerate that settles
+     rather than bounces. Durations stay short — motion supports the words,
+     it never makes anyone wait. Keyframes live in app/globals.css. */
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-rise: rise-in 550ms var(--ease-soft) both;
+  --animate-fade: fade-in 350ms var(--ease-soft) both;
+  --animate-tick: tick 300ms ease-out;
 }

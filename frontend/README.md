@@ -1,6 +1,6 @@
 # Daddy Bear website
 
-A fully static Next.js site (TypeScript, App Router, Tailwind CSS v4), exported to plain HTML/CSS/JS and hosted on Cloudflare Pages. There is no backend: the newsletter, host-a-screening form, tickets, WhatsApp and analytics are all third-party services. See `../CLAUDE.md` for the build brief, `../EXECUTION_PLAN.md` for the schedule, `design-system/` for tokens, voice and component rules, and **`CONTENT.md` for adding screenings and Journal posts**.
+A fully static Next.js site (TypeScript, App Router, Tailwind CSS v4), exported to plain HTML/CSS/JS and hosted on Cloudflare Pages. There is no backend: the newsletter, host-a-screening form, tickets, WhatsApp and analytics are all third-party services. See `../CLAUDE.md` for the build brief, `../EXECUTION_PLAN.md` for the schedule, **`../SETUP.md` to set up the third-party services**, `design-system/` for tokens, voice and component rules, and **`CONTENT.md` for adding screenings and Journal posts**.
 
 ## Getting started
 
@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000). The site runs with no env v
    - **Build command:** `npm run build`
    - **Build output directory:** `out`
    - Node version comes from `.node-version` (22).
-3. Settings → Environment variables: add everything from `.env.example` for Production (and Preview if wanted). These are baked in at build time, so **redeploy after changing one**.
+3. Settings → Environment variables: add everything from `.env.example` for Production (and Preview if wanted). These are baked in at build time, so **redeploy after changing one**. Step-by-step for each service: `../SETUP.md`.
 4. Custom domains → add `daddybear.ng` (and `www.daddybear.ng`). The domain's DNS must be on Cloudflare.
 5. Cloudflare Web Analytics can be switched on for the Pages project without any code. If you do that, leave `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` unset so the beacon doesn't load twice.
 
@@ -42,7 +42,7 @@ Every push to `main` deploys. `public/_headers` sets long-lived caching for fing
 
 | Service | Used for | Env var |
 |---|---|---|
-| **Kit** | Newsletter. Create a form in Kit; its ID is in the embed code (`app.kit.com/forms/<ID>/subscriptions`). The site posts to it directly from the browser. Double opt-in is Kit's default: subscribers confirm by email. | `NEXT_PUBLIC_KIT_FORM_ACTION` |
+| **Substack** | Newsletter. Subscribing happens on Substack (it accepts no cross-origin posts), so the site links out and embeds Substack's own box on Home. The publication URL lives in `content/links.ts`, not env. | none |
 | **Tally** | Host-a-screening application, embedded on `/screenings/host`. Fields: organisation name, organisation type (mosque / school / community centre), contact name, email, phone or WhatsApp, city, preferred dates, notes. | `NEXT_PUBLIC_TALLY_FORM_ID` |
 | **WhatsApp** | Channel link (footer, Home), click-to-chat (host page, screenings, About, footer), share buttons (posts, screenings). | `NEXT_PUBLIC_WHATSAPP_CHANNEL_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` |
 | **Tix Africa** | Ticket sales. No key: each screening's event link lives in `content/screenings.json`. Links get `utm_*` tags automatically so click-throughs are attributable. | none |
@@ -51,11 +51,12 @@ Every push to `main` deploys. `public/_headers` sets long-lived caching for fing
 ## Project structure
 
 ```
-app/            routes: /, /film, /screenings, /screenings/host, /journal, /journal/[slug], /about, 404, sitemap, robots
+app/            routes: /, /film, /screenings, /screenings/host, /journal, /journal/[slug], /about, /privacy, /terms, 404, sitemap, robots
 components/     shared UI built against design-system/ tokens
-content/        everything editable: screenings.json, journal/*.mdx, film.ts, home.ts (see CONTENT.md)
+content/        everything editable: screenings.json, journal/*.mdx, film.ts, home.ts, links.ts, legal.ts (see CONTENT.md)
 design-system/  tokens.css (Tailwind theme source), tokens.ts (JS mirror), and category docs
-lib/            content loaders (validated at build), date helpers, Kit client, site config and link builders
+lib/            content loaders (validated at build), date helpers, site config and link builders
+public/         _headers (caching rules), og.png (the link-preview picture)
 scripts/        post-build steps: page-weight budget, Windows segment-path fix
 mdx-components.tsx  how Journal markdown renders, plus the <Figure> and <Video> post components
 ```

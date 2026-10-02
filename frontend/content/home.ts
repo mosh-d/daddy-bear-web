@@ -23,7 +23,7 @@ export const homeHero = {
   eyebrow: 'Cardinal Productions presents',
   title: 'Daddy Bear',
   tagline: 'A film about fathers who show up.',
-  // The film in one paragraph. Placeholder until Cardinal supplies final copy.
+  // The film in one paragraph, from Cardinal's information pack.
   paragraph:
-    'Daddy Bear is a feature film about the fathers who show up: quietly, consistently, without asking to be noticed. Three women made it with a grant and a conviction that those fathers deserve to be celebrated, and it comes to screenings in communities across Nigeria from November 2026.',
+    'A Nigerian family drama set in Abuja. After losing his wife during childbirth, Fahd refuses to remarry and has to learn to raise his newborn daughter and his pre-teen daughter while navigating grief, work and the everyday demands of family life.',
 };

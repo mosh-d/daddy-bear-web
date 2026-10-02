@@ -16,7 +16,7 @@ The first version of this plan (7 August) was written against the original propo
 | Hosting | Vercel (app) + Cloudflare (DNS) | Cloudflare Pages, serving the `out/` folder |
 | Images | Next.js image server | `images.unoptimized: true`; ship pre-compressed WebP/AVIF, lazy-load below the fold |
 | Journal | Sanity.io, posted from a phone | Local MDX files in `content/journal/`, edited by the developer and deployed on push |
-| Newsletter | Brevo via `/api/newsletter` | Kit's hosted form endpoint, posted from the browser (no endpoint of our own) |
+| Newsletter | Brevo via `/api/newsletter` | **Substack** (the brief said Kit; superseded 2 Oct by Cardinal's information pack — see below) |
 | Analytics | Plausible | Cloudflare Web Analytics (cookie-free) or GA4, whichever is set in env |
 | Screenings & tickets | Phase 2, on the NestJS backend | **In scope now.** Local `content/screenings.json`; "Buy tickets" links out to Tix Africa |
 | Host-a-screening form | Phase 2, on the backend | Tally iframe embed |
@@ -74,6 +74,19 @@ The first version of this plan (7 August) was written against the original propo
 
 M1–M3 are code the dev team controls. M4–M5 depend on Cardinal's accounts and assets (below).
 
+### Changes on 2026-10-02, from Cardinal's Website Content & Information Pack
+
+The pack ("Daddy Bear Website Information.pdf", repo root) supplied real content and one decision that overrides the brief.
+
+- **Newsletter is Substack, not Kit.** The pack names `cardinalproductions.substack.com`. Substack accepts no cross-origin posts (unlike Kit, which does), so the custom inline form the brief specifies cannot work: it would fail silently in the browser. Agreed approach: brand-styled **Join the list** links to Substack everywhere, and Home embeds Substack's own box, click-to-load so its weight only lands for people who want it. The Kit form, React Hook Form and Zod-in-the-browser are gone, which also took ~20KB off every page.
+- **Real content in place of placeholders:** the film's synopsis, the full credits (writer Hajarat Abiodun Alli; co-directors Hajarat Abiodun Alli and Korede Azeez; producer Fulfilment "Fuchi" Nwaturuocha), the funder credit in its required wording, the contact email, and the four social accounts. All in `content/links.ts` and `content/film.ts`.
+- **Terms and Privacy published** from the pack's wording (`/terms`, `/privacy`, linked in the footer). The privacy page names whichever analytics is actually enabled, as the policy itself promises, by reading the same configuration the site loads analytics from.
+- **Link previews:** `public/og.png`, a branded 1200×630 card, so a link shared on WhatsApp isn't blank. Replace with key art when it exists.
+- **Motion system** added across the site (see `design-system/05-imagery-motion.md`): entrances on load and on scroll, hover and press feedback, staggered menu, ticking countdown digits. All CSS, no JavaScript, all of it off under `prefers-reduced-motion`.
+- **`SETUP.md`** (repo root) is the step-by-step for setting up every third-party service, with what each one needs, who owns it, and how to check it works.
+
+**Still outstanding from the pack:** partner logos to sit beside the funder credit, the About page's full origin story, cast list, trailer, and photography. The YouTube link points at `@korayday`, which looks like a personal channel — worth confirming.
+
 ### Notes from the 19 September build
 - **Page weight.** Pages went from ~395KB to ~280KB initial load (gzipped). Full Zod in the footer form cost ~55KB of JS on every page, so it now uses Zod Mini. Fraunces now loads as two single-weight files, with the italic only on pages that use it (128KB → 65KB of fonts). The remaining ~165KB of JS is React plus the Next.js router, the floor for a Next.js App Router site. The build now fails if a page goes over 300KB total or 215KB of JS.
 - **Newsletter before JavaScript loads.** On 3G the form is visible seconds before it's interactive. A submit in that gap used to reload the page with the email address in the URL, where analytics would record it. The form now posts natively to Kit in that window.
@@ -82,7 +95,7 @@ M1–M3 are code the dev team controls. M4–M5 depend on Cardinal's accounts an
 - **Verified in a browser at 360px and 1280px:** all routes render with no console errors or failed requests and no horizontal overflow. Filters, the show-past toggle and UTM-tagged ticket links work. Past screenings drop off the list and Home's next screening advances as the date passes (tested with a simulated clock). Newsletter validation and error states work inline.
 
 ### What Cardinal needs to provide (blocks M4/M5)
-1. **Kit** account + a form created in Kit; its form ID or action URL → `NEXT_PUBLIC_KIT_FORM_ACTION`. Decide whether double opt-in stays on (Kit's default).
+1. **Substack** (exists). Confirm the publication URL, allow embeds, and write the welcome email new subscribers receive. No key or env var: the URL lives in `content/links.ts`. See `SETUP.md` step 2.
 2. **Tally** form with the fields from the brief (organisation name, organisation type: mosque / school / community centre, contact name, email, phone or WhatsApp, city, preferred dates, notes) → `NEXT_PUBLIC_TALLY_FORM_ID`.
 3. **WhatsApp** Channel invite link → `NEXT_PUBLIC_WHATSAPP_CHANNEL_URL`, and the business number for click-to-chat → `NEXT_PUBLIC_WHATSAPP_NUMBER`.
 4. **Analytics:** recommend **Cloudflare Web Analytics**. It's cookie-free, so no consent banner is needed under the NDPA. GA4 is supported but sets cookies and arguably needs consent. Provide the token or measurement ID.

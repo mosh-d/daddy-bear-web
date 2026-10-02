@@ -30,7 +30,9 @@ export async function generateMetadata(props: PageProps<'/journal/[slug]'>): Pro
       title,
       description: excerpt,
       url: `/journal/${slug}`,
-      ...(cover ? { images: [cover] } : {}),
+      // A post without a cover still needs a picture for WhatsApp previews:
+      // metadata here replaces the layout's openGraph rather than merging.
+      images: cover ? [cover] : ['/og.png'],
     },
   };
 }

@@ -5,7 +5,7 @@ import { colors } from '@/design-system/tokens';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { Analytics } from '@/components/Analytics';
-import { SITE_URL } from '@/lib/site';
+import { SHARE_IMAGE_ALT, SITE_URL } from '@/lib/site';
 
 // The display face is only ever set upright at 600 (headings) or italic at
 // 400 (the one supporting line under a hero title), so each loads as a
@@ -39,20 +39,24 @@ export const metadata: Metadata = {
     template: '%s — Daddy Bear',
   },
   description:
-    'Daddy Bear is a film, a brand and a mission: celebrating fathers who show up. Follow the production and join the list.',
+    'A Nigerian family drama set in Abuja. Follow the production, find a screening, and join the list.',
   openGraph: {
     title: 'Daddy Bear — A film about fathers who show up',
     description:
-      'Daddy Bear is a film, a brand and a mission: celebrating fathers who show up. Follow the production and join the list.',
+      'A Nigerian family drama set in Abuja. Follow the production, find a screening, and join the list.',
     url: SITE_URL,
     siteName: 'Daddy Bear',
     type: 'website',
+    // The picture shown when a link is shared, on WhatsApp above all.
+    // Replace public/og.png with Cardinal's key art when it arrives.
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: SHARE_IMAGE_ALT }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Daddy Bear — A film about fathers who show up',
     description:
-      'Daddy Bear is a film, a brand and a mission: celebrating fathers who show up.',
+      'A Nigerian family drama set in Abuja. Follow the production, find a screening, and join the list.',
+    images: ['/og.png'],
   },
 };
 

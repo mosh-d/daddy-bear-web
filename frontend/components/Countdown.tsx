@@ -60,7 +60,10 @@ export function Countdown({
         <div className="grid grid-cols-4 gap-3 sm:gap-6" role="timer" aria-live="off">
           {UNITS.map(({ key, label }) => (
             <div key={key} className="text-center">
-              <span className="block font-display text-3xl font-semibold tabular-nums sm:text-5xl">
+              <span
+                key={timeLeft[key]}
+                className="block animate-[var(--animate-tick)] font-display text-3xl font-semibold tabular-nums sm:text-5xl"
+              >
                 {String(timeLeft[key]).padStart(2, '0')}
               </span>
               <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.2em] text-cream-100/60 sm:text-xs">

@@ -4,6 +4,8 @@ import { Card } from '@/components/Card';
 import { Badge } from '@/components/Badge';
 import { Button } from '@/components/Button';
 import { WhatsAppChat } from '@/components/WhatsAppLinks';
+import { film } from '@/content/film';
+import { CONTACT_EMAIL, SUPPORT_CREDIT } from '@/content/links';
 
 export const metadata: Metadata = {
   title: 'About & Mission',
@@ -41,12 +43,24 @@ export default function AboutPage() {
 
       <Section tone="cream-alt" eyebrow="The team">
         <div className="flex flex-wrap gap-3">
-          <Badge>Founder, Producer & Co-Director — Korede Azeez</Badge>
-          <Badge>More credits from Cardinal Productions</Badge>
+          {film.credits.map((credit) => (
+            <Badge key={`${credit.role}-${credit.name}`}>
+              {credit.role} — {credit.name}
+            </Badge>
+          ))}
         </div>
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink/70">
-          Cardinal Productions Limited is based in Gwagwalada, FCT, Abuja. Full team credits and
-          photography land here once supplied.
+          Cardinal Productions Limited is based in Gwagwalada, FCT, Abuja. Team photography lands here
+          once supplied.
+        </p>
+      </Section>
+
+      <Section tone="cream" eyebrow="Supported by">
+        {/* Funder credit, in the exact wording Cardinal's pack requires. Partner
+            logos go beside it once supplied, per the partners' brand guidelines. */}
+        <p className="font-display text-xl font-semibold text-navy-900 sm:text-2xl">{SUPPORT_CREDIT}</p>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/70">
+          Daddy Bear is supported by Africa No Filter&apos;s Entertainment and Media Hubs Program.
         </p>
       </Section>
 
@@ -59,14 +73,26 @@ export default function AboutPage() {
           that&apos;s coverage, a partnership or a screening for your community.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-6">
-          <Button href="/screenings/host" variant="secondary">
-            Host a screening
+          <Button href={`mailto:${CONTACT_EMAIL}`} external>
+            Email us
           </Button>
           <WhatsAppChat
             message="Hello Daddy Bear team, I'm getting in touch about press or a partnership."
             label="Chat with us on WhatsApp"
           />
+          <Button href="/screenings/host" variant="ghost">
+            Host a screening
+          </Button>
         </div>
+        <p className="mt-6 text-sm text-ink/70">
+          General, press, partnership and screening enquiries:{' '}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold-600"
+          >
+            {CONTACT_EMAIL}
+          </a>
+        </p>
       </Section>
     </>
   );

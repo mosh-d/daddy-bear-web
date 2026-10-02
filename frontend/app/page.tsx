@@ -1,8 +1,9 @@
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { NewsletterForm } from '@/components/NewsletterForm';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { NextScreening } from '@/components/NextScreening';
+import { SubstackEmbed } from '@/components/SubstackEmbed';
 import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { JournalCard } from '@/components/JournalCard';
 import { homeCta, homeHero } from '@/content/home';
@@ -95,7 +96,14 @@ export default function HomePage() {
               <WhatsAppCTA tone="onNavy" />
             </div>
           </div>
-          <NewsletterForm tone="onNavy" />
+          <div>
+            <SubstackEmbed />
+            {/* The footer carries the full signup button; here the embed is the
+                main path and this is just the way out to Substack's own page. */}
+            <div className="mt-4">
+              <NewsletterSignup tone="onNavy" />
+            </div>
+          </div>
         </div>
       </Section>
     </>

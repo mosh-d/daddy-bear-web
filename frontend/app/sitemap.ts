@@ -5,7 +5,7 @@ import { absoluteUrl } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ['/', '/film', '/screenings', '/screenings/host', '/journal', '/about'];
+  const pages = ['/', '/film', '/screenings', '/screenings/host', '/journal', '/about', '/privacy', '/terms'];
   return [
     ...pages.map((path) => ({ url: absoluteUrl(path) })),
     ...getJournalPosts().map((post) => ({

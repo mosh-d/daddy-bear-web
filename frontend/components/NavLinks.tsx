@@ -17,7 +17,7 @@ export function NavLinks() {
             key={link.href}
             href={link.href}
             aria-current={active ? 'page' : undefined}
-            className={`hit-area py-1 text-sm font-semibold uppercase tracking-wide transition-colors hover:text-gold-400 ${
+            className={`hit-area underline-grow py-1 text-sm font-semibold uppercase tracking-wide transition-colors hover:text-gold-400 ${
               active ? 'text-gold-400' : 'text-cream-100'
             }`}
           >
