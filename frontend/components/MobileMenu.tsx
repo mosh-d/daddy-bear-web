@@ -109,8 +109,11 @@ export function MobileMenu() {
                     <Link
                       href={link.href}
                       aria-current={active ? 'page' : undefined}
-                      className={`flex items-center justify-between py-3 font-display text-xl font-semibold transition-colors hover:text-gold-400 ${
-                        active ? 'text-gold-400' : 'text-cream-50'
+                      // Same treatment as the inline nav (NavLinks): Inter,
+                      // uppercase, semibold, wide tracking. py-3 keeps the row
+                      // at 44px even at this smaller size.
+                      className={`flex items-center justify-between py-3 text-sm font-semibold uppercase tracking-wide transition-colors hover:text-gold-400 ${
+                        active ? 'text-gold-400' : 'text-cream-100'
                       }`}
                     >
                       {link.label}
@@ -123,7 +126,9 @@ export function MobileMenu() {
           </nav>
           <Link
             href="/screenings/host"
-            className="hit-area mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-cream-100 hover:text-gold-400"
+            // Secondary to the four sections above, so it's dimmer rather than
+            // a different size — the links themselves now match the top nav.
+            className="hit-area underline-grow mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-cream-100/70 hover:text-gold-400"
           >
             Host a screening
           </Link>

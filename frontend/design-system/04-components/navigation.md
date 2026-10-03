@@ -15,8 +15,8 @@ Active state, both layouts: the current section's link shows in `gold-400`, the 
 
 Tapping the burger (which becomes an X) drops a solid navy panel from under the header, over the page, which dims behind it:
 
-- The four links in Fraunces 600 at `text-xl` (20px), one per row with a hairline divider and a quiet arrow: ~52px tall rows, easy to hit one-handed without dominating a small screen.
-- **Host a screening** as a small secondary link, then the one primary action, **Join the list** (to `/#join`), and the WhatsApp Channel button when configured.
+- The four links in **exactly the inline nav's treatment** — Inter, `text-sm`, semibold, uppercase, wide tracking — one per row with a hairline divider and a quiet arrow. `py-3` keeps each row at 44px. The menu is the same navigation in a different place, so it shouldn't read as a different typeface; an earlier version set them in Fraunces at `text-xl`, which looked like headings rather than nav.
+- **Host a screening** below them, same size but dimmed (`text-cream-100/70`) to mark it as secondary, then the one primary action, **Join the list** (to `/#join`, the footer), and the WhatsApp Channel button when configured.
 
 Behaviour: opens and closes in ~200ms (fade + 8px slide, `ease-out`; instant under reduced motion). While it's open the page behind doesn't scroll and is `inert`, so keyboard focus can't wander behind the menu. It closes when you tap a link, the X, or the dimmed page; press Escape (focus returns to the burger); change route; or widen the window past `md`. On a short landscape phone the panel scrolls within itself. The burger is a 44×44 target and exposes `aria-expanded`/`aria-controls`.
 
