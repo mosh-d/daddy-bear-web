@@ -22,9 +22,6 @@ The pattern to follow, and what the removed Kit form did:
 
 ## Newsletter placement
 
-The newsletter is reachable from every page, per the brief's non-negotiable ("newsletter signup present on every page, not hidden on one"), but it only gets a section of its own on Home:
+The signup lives **in the footer, on every page, and nowhere else** — satisfying the brief's non-negotiable ("newsletter signup present on every page, not hidden on one") in one place rather than two. It's the Substack embed with a quiet link beside it for anyone who'd rather use Substack's own page, next to the WhatsApp Channel CTA: the brief treats both as the same "capture the audience" job, not two separate asks.
 
-- **Home, Join section:** the Substack embed, with a quiet link beside it for anyone who'd rather use Substack's own page. The WhatsApp Channel CTA sits alongside — the brief treats both as the same "capture the audience" job, not two separate asks.
-- **Every page, footer:** one line of text with a link, not a heading and a button. Repeating the full block there turned the bottom of Home into two near-identical panels.
-
-One button per destination: if a visitor can already subscribe in front of them, don't put a second gold button to the same place underneath.
+Home points at it with its hero call to action (`#join`, the footer's id) rather than repeating the block above the footer — see `navigation.md`.

@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { Container } from './Container';
+import { NewsletterSignup } from './NewsletterSignup';
 import { SocialLinks } from './SocialLinks';
+import { SubstackEmbed } from './SubstackEmbed';
 import { WhatsAppCTA } from './WhatsAppCTA';
 import { WhatsAppChat } from './WhatsAppLinks';
-import { CONTACT_EMAIL, SUBSTACK_URL, SUPPORT_CREDIT } from '@/content/links';
-import { CARDINAL_STUDIO_URL, withUtm } from '@/lib/site';
+import { CONTACT_EMAIL, SUPPORT_CREDIT } from '@/content/links';
+import { CARDINAL_STUDIO_URL } from '@/lib/site';
 
 const LINKS = [
   { href: '/film', label: 'The Film' },
@@ -16,54 +18,53 @@ const LINKS = [
   { href: '/terms', label: 'Terms' },
 ];
 
-const SUBSCRIBE_URL = withUtm(`${SUBSTACK_URL}/subscribe`, {
-  source: 'daddybear.ng',
-  medium: 'website',
-  campaign: 'footer',
-});
-
+/**
+ * The one place on the site that collects the audience: newsletter, WhatsApp,
+ * socials and contact, on every page. `id="join"` is the target of the Home
+ * hero's call to action and the mobile menu's "Join the list", so those jump
+ * here rather than to a section of their own — a second signup block above
+ * the footer just read as two footers.
+ */
 export function Footer() {
   return (
-    <footer className="bg-navy-950 py-16 text-cream-50 sm:py-20">
+    <footer id="join" className="scroll-mt-16 bg-navy-950 py-16 text-cream-50 sm:py-20">
       <Container>
-        <div className="grid gap-12 sm:grid-cols-2">
+        <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
           <div>
             <p className="font-display text-xl font-semibold uppercase tracking-wide">Daddy Bear</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream-100/80">
-              A film, a brand and a mission: celebrating fathers who show up.
+              The newsletter and our WhatsApp channel are how we share screenings, gifts and news from
+              the production first, before social media.
             </p>
+            <div className="mt-6 flex flex-col items-start gap-4">
+              <WhatsAppCTA tone="onNavy" />
+              <WhatsAppChat
+                tone="onNavy"
+                message="Hello Daddy Bear team, I have a question."
+                label="Questions? Chat with us"
+              />
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="hit-area underline-grow text-sm font-semibold text-cream-100/80 hover:text-gold-400"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </div>
             <div className="mt-6">
               <SocialLinks />
             </div>
           </div>
 
-          <div className="flex flex-col items-start gap-4">
-            <WhatsAppCTA tone="onNavy" />
-            <WhatsAppChat
-              tone="onNavy"
-              message="Hello Daddy Bear team, I have a question."
-              label="Questions? Chat with us"
-            />
-            {/* The newsletter needs to be reachable from every page, but Home
-                already gives it a section of its own — so this is one line,
-                not a second signup block. */}
-            <p className="text-sm text-cream-100/80">
-              Screenings, gifts and news by email:{' '}
-              <a
-                href={SUBSCRIBE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hit-area underline-grow font-semibold text-cream-50 hover:text-gold-400"
-              >
-                subscribe on Substack
-              </a>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-gold-400">
+              Stay with the story
             </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="hit-area underline-grow text-sm font-semibold text-cream-100/80 hover:text-gold-400"
-            >
-              {CONTACT_EMAIL}
-            </a>
+            <div className="mt-4">
+              <SubstackEmbed />
+            </div>
+            <div className="mt-4">
+              <NewsletterSignup tone="onNavy" />
+            </div>
           </div>
         </div>
 

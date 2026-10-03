@@ -1,10 +1,7 @@
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { NextScreening } from '@/components/NextScreening';
-import { SubstackEmbed } from '@/components/SubstackEmbed';
-import { WhatsAppCTA } from '@/components/WhatsAppCTA';
 import { JournalCard } from '@/components/JournalCard';
 import { homeCta, homeHero } from '@/content/home';
 import { todayInLagos } from '@/lib/dates';
@@ -83,29 +80,6 @@ export default function HomePage() {
         </Section>
       ) : null}
 
-      <Section id="join" tone="navy" eyebrow="Join the journey" className="scroll-mt-16">
-        <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
-          <div>
-            <h2 className="font-display text-2xl font-semibold sm:text-3xl">Be first to know.</h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-cream-100/90">
-              The newsletter and our WhatsApp channel are how we share screenings, gifts and news from
-              the production first, before social media. It&apos;s also the only list Cardinal
-              Productions owns outright, so it&apos;s never going away.
-            </p>
-            <div className="mt-6">
-              <WhatsAppCTA tone="onNavy" />
-            </div>
-          </div>
-          <div>
-            <SubstackEmbed />
-            {/* The footer carries the full signup button; here the embed is the
-                main path and this is just the way out to Substack's own page. */}
-            <div className="mt-4">
-              <NewsletterSignup tone="onNavy" />
-            </div>
-          </div>
-        </div>
-      </Section>
     </>
   );
 }
