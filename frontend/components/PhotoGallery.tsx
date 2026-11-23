@@ -6,7 +6,8 @@ import { ArrowRightIcon, CloseIcon } from './Icons';
 import type { GalleryImage } from '@/content/about';
 
 /**
- * A swipeable row of photos that settles each one in the centre. The centred
+ * A swipeable strip of film, each photo a frame on it, that settles each one
+ * in the centre. The centred
  * photo is full size and the ones either side shrink and fade back, driven
  * by scroll position (`.gallery-slide` in app/globals.css), so the focus
  * follows your finger rather than jumping when the swipe ends. Tapping a
@@ -68,8 +69,13 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
     });
   }, []);
 
-  // Start with the first photo settled in the centre.
-  useEffect(() => goTo(0, true), [goTo]);
+  // Start with a photo settled in the centre. From tablet up that's the
+  // second, so the first sits beside it and the strip doesn't open on a long
+  // stretch of empty film; on a phone, where one photo fills the view, the first.
+  useEffect(() => {
+    const wide = window.matchMedia('(min-width: 640px)').matches;
+    goTo(wide && images.length > 2 ? 1 : 0, true);
+  }, [goTo, images.length]);
 
   // After the fullscreen view closes, leave the row on the photo you were
   // last looking at, with focus on it. Runs once the dialog has gone, since
@@ -95,7 +101,10 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
     <div role="region" aria-roledescription="carousel" aria-label={label}>
       <div
         ref={trackRef}
-        className="gallery-track relative -mx-4 flex snap-x snap-mandatory items-center gap-3 overflow-x-auto py-4 [scrollbar-width:none] sm:-mx-6 sm:gap-5 lg:-mx-8 [&::-webkit-scrollbar]:hidden"
+        // The row is a strip of film (`.film-roll` in app/globals.css): Ink,
+        // sprocket holes along both edges that travel with the photos, and
+        // each photo a frame on it.
+        className="gallery-track film-roll relative -mx-4 flex snap-x snap-mandatory items-center gap-2 overflow-x-auto py-10 [scrollbar-width:none] sm:-mx-6 sm:gap-3 sm:rounded-sm sm:py-12 lg:-mx-8 [&::-webkit-scrollbar]:hidden"
       >
         {images.map((image, index) => {
           const isPortrait = image.height > image.width;
@@ -110,7 +119,7 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
               <button
                 type="button"
                 onClick={() => setOpen(index)}
-                className="group relative block cursor-zoom-in overflow-hidden rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100"
+                className="group relative block cursor-zoom-in overflow-hidden rounded-[3px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 aria-label={`View fullscreen: ${image.alt}`}
               >
                 <Image
@@ -129,7 +138,7 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
                 />
               </button>
               {image.caption ? (
-                <figcaption className="mt-3 max-w-[64vw] text-sm text-ink/70 sm:max-w-xs">{image.caption}</figcaption>
+                <figcaption className="mt-3 max-w-[64vw] text-sm text-cream-100/75 sm:max-w-xs">{image.caption}</figcaption>
               ) : null}
             </figure>
           );

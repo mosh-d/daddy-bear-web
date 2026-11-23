@@ -197,6 +197,30 @@ body {
 }
 
 /*
+ * Cinema tickets (components/ScreeningCard.tsx). Two round notches are cut
+ * out of the ticket's edges where the stub tears off: on a phone, left and
+ * right at the top of the 4.5rem stub along the bottom; from tablet up, top
+ * and bottom at the left of the 10rem stub on the right. A mask cuts real
+ * holes, so they show whatever section the ticket sits on.
+ */
+.ticket {
+  --notch: 0.9rem;
+  mask:
+    radial-gradient(circle var(--notch) at 0 calc(100% - 4.5rem), #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - 4.5rem), #0000 98%, #000) right / 51% 100% no-repeat;
+}
+@media (min-width: 640px) {
+  .ticket {
+    mask:
+      radial-gradient(circle var(--notch) at calc(100% - 10rem) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at calc(100% - 10rem) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  }
+}
+.ticket-shadow {
+  filter: drop-shadow(0 1px 1px rgb(20 20 20 / 0.1)) drop-shadow(0 8px 18px rgb(20 20 20 / 0.08));
+}
+
+/*
  * Photo galleries (components/PhotoGallery.tsx).
  *
  * The track is padded so the first and last photos can settle in the centre
@@ -212,6 +236,22 @@ body {
   }
 }
 
+/* The row as a strip of film: Ink, with sprocket holes along both edges.
+   `local` makes the holes scroll with the photos, so the whole strip moves
+   as one when you swipe. */
+.film-roll {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='14'%3E%3Crect x='7' y='2' width='10' height='10' rx='2' fill='%23f7f2e8'/%3E%3C/svg%3E") left 0 top 0.875rem / 24px 14px repeat-x local,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='14'%3E%3Crect x='7' y='2' width='10' height='10' rx='2' fill='%23f7f2e8'/%3E%3C/svg%3E") left 0 bottom 0.875rem / 24px 14px repeat-x local,
+    var(--color-ink);
+}
+@media (min-width: 640px) {
+  .film-roll {
+    background-size: 28px 16px, 28px 16px, auto;
+    background-position: left 0 top 1rem, left 0 bottom 1rem, 0 0;
+  }
+}
+
 /* Focus: the centred photo is full size, its neighbours shrink and fade
    back. Where the browser supports scroll-driven animation, this tracks
    the swipe continuously; elsewhere it eases to the photo that settles. */
@@ -221,15 +261,15 @@ body {
     opacity 450ms var(--ease-soft);
 }
 .gallery-slide:not([data-active]) {
-  scale: 0.86;
-  opacity: 0.55;
+  scale: 0.92;
+  opacity: 0.45;
 }
 
 @keyframes gallery-focus {
   0%,
   100% {
-    scale: 0.82;
-    opacity: 0.45;
+    scale: 0.9;
+    opacity: 0.4;
   }
   50% {
     scale: 1;
