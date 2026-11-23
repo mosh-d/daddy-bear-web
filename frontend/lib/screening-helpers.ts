@@ -39,7 +39,7 @@ export function startsAt(screening: Screening) {
 export function ticketHref(screening: Screening) {
   if (!screening.ticketUrl) return undefined;
   return withUtm(screening.ticketUrl, {
-    source: 'daddybear.ng',
+    source: 'daddybearfilm.com',
     medium: 'website',
     campaign: 'screenings',
     content: screening.id,

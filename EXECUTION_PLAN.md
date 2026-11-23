@@ -69,7 +69,7 @@ The first version of this plan (7 August) was written against the original propo
 | M2 | Screenings & hosting | Fri 25 Sep | `content/screenings.json`; `/screenings` with client-side city/month filters and "show past" toggle; Tix Africa buttons with UTM tags, or "sold at the door"; `/screenings/host` with Tally embed; WhatsApp share on screenings and posts; click-to-chat where relevant; Screenings in the nav | dev | **Code complete 19 Sep** |
 | M3 | Home, Film, About | Wed 30 Sep | Home rebuilt to the brief (film paragraph, mission, next screening with countdown, one seasonal CTA, newsletter); `content/film.ts` + Film page (click-to-load trailer, synopsis, cast, world of the film); About press & partners section | dev | **Code complete 19 Sep** (placeholder copy) |
 | M4 | Performance & QA | Fri 9 Oct | Page-weight budget in the build; image guidance for real photography (WebP, sized); `_headers` caching for hashed assets; OG share image for WhatsApp previews; real-device QA on throttled 3G incl. WhatsApp/Instagram in-app browsers | dev + Cardinal | Budget, `_headers`, image guidance done. OG image waits on artwork; device QA waits on real content. |
-| M5 | Launch on Cloudflare Pages | Fri 16 Oct | Cloudflare Pages project (root `frontend`, build `npm run build`, output `out`); env vars set; `daddybear.ng` attached as custom domain; analytics verified firing; real screenings and Tix Africa links loaded | Cardinal (accounts) + dev | Waiting on accounts |
+| M5 | Launch on Cloudflare Pages | Fri 16 Oct | Cloudflare Pages project (root `frontend`, build `npm run build`, output `out`); env vars set; `daddybearfilm.com` attached as custom domain; analytics verified firing; real screenings and Tix Africa links loaded | Cardinal (accounts) + dev | Waiting on accounts |
 | — | **November circuit opens** | November 2026 | Screenings updated by editing `content/screenings.json` and pushing | dev | |
 
 M1–M3 are code the dev team controls. M4–M5 depend on Cardinal's accounts and assets (below).
@@ -114,7 +114,7 @@ The pack ("Daddy Bear Website Information.pdf", repo root) supplied real content
 ---
 
 ## Out of scope for this version
-Shop / merch, payments, social wall, authentication, user accounts, admin dashboard, any backend or database, WhatsApp Business API. `shop.daddybear.ng` and `tickets.daddybear.ng` will later be DNS-level redirects (Cloudflare redirect rules) onto paths in this one app, not separate apps. The Home CTA is built to swap to "buy a gift" when a shop link exists.
+Shop / merch, payments, social wall, authentication, user accounts, admin dashboard, any backend or database, WhatsApp Business API. `shop.daddybearfilm.com` and `tickets.daddybearfilm.com` will later be DNS-level redirects (Cloudflare redirect rules) onto paths in this one app, not separate apps. The Home CTA is built to swap to "buy a gift" when a shop link exists.
 
 ## After launch
 Monthly management retainer (per the proposal): Journal and screening updates by file edit + push, seasonal Home CTA swaps (join → tickets → gifts), campaign pages (December, then Ramadan/Eid 2027), quarterly review.

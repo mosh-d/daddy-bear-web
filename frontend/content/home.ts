@@ -10,7 +10,7 @@ type Cta = { label: string; href: string; external?: boolean };
 const CTA_BY_SEASON = {
   join: { label: 'Join the list', href: '#join' },
   tickets: { label: 'Get tickets', href: '/screenings' },
-  // gifts: { label: 'Shop gifts', href: 'https://shop.daddybear.ng', external: true },
+  // gifts: { label: 'Shop gifts', href: 'https://shop.daddybearfilm.com', external: true },
   // Add the gifts season once a shop link exists. The shop itself is out of
   // scope for this site.
 } satisfies Record<string, Cta>;

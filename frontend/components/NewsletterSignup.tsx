@@ -20,7 +20,7 @@ export function NewsletterSignup({
   campaign?: string;
 }) {
   const href = withUtm(`${SUBSTACK_URL}/subscribe`, {
-    source: 'daddybear.ng',
+    source: 'daddybearfilm.com',
     medium: 'website',
     campaign,
   });

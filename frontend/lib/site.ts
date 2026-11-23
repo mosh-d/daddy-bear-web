@@ -6,7 +6,7 @@
  * value is unset, rather than shipping a dead link or a broken embed.
  */
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://daddybear.ng').replace(/\/+$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://daddybearfilm.com').replace(/\/+$/, '');
 
 export const CARDINAL_STUDIO_URL = process.env.NEXT_PUBLIC_CARDINAL_STUDIO_URL || 'https://cardinalstudio.ng';
 

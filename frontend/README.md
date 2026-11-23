@@ -31,12 +31,12 @@ Open [http://localhost:3000](http://localhost:3000). The site runs with no env v
    - **Build output directory:** `out`
    - Node version comes from `.node-version` (22).
 3. Settings → Environment variables: add everything from `.env.example` for Production (and Preview if wanted). These are baked in at build time, so **redeploy after changing one**. Step-by-step for each service: `../SETUP.md`.
-4. Custom domains → add `daddybear.ng` (and `www.daddybear.ng`). The domain's DNS must be on Cloudflare.
+4. Custom domains → add `daddybearfilm.com` (and `www.daddybearfilm.com`). The domain's DNS must be on Cloudflare.
 5. Cloudflare Web Analytics can be switched on for the Pages project without any code. If you do that, leave `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` unset so the beacon doesn't load twice.
 
 Every push to `main` deploys. `public/_headers` sets long-lived caching for fingerprinted assets and basic security headers.
 
-`shop.daddybear.ng` and `tickets.daddybear.ng`, when needed, are Cloudflare redirect rules onto paths of this site (e.g. `tickets.` → `https://daddybear.ng/screenings`), not separate apps.
+`shop.daddybearfilm.com` and `tickets.daddybearfilm.com`, when needed, are Cloudflare redirect rules onto paths of this site (e.g. `tickets.` → `https://daddybearfilm.com/screenings`), not separate apps.
 
 ## Third-party accounts
 

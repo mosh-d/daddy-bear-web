@@ -26,7 +26,7 @@ Edit `content/screenings.json`. Add one entry to the list:
 
 | Field | What to put |
 |---|---|
-| `id` | Unique, lowercase, hyphens only. City + date works well (`abuja-2026-11-14`). It's also the link anchor: `daddybear.ng/screenings#abuja-2026-11-14`. |
+| `id` | Unique, lowercase, hyphens only. City + date works well (`abuja-2026-11-14`). It's also the link anchor: `daddybearfilm.com/screenings#abuja-2026-11-14`. |
 | `city` | Shown on the card and in the city filter. Spell a city the same way every time, or it appears twice in the filter. |
 | `venue`, `address` | As they should appear on the card. |
 | `date` | `YYYY-MM-DD`. |
@@ -42,7 +42,7 @@ Edit `content/screenings.json`. Add one entry to the list:
 
 ## Add a Journal post
 
-Create a new file in `content/journal/`. The file name is the post's URL: `first-day-on-set.mdx` → `daddybear.ng/journal/first-day-on-set`. Lowercase words joined by hyphens.
+Create a new file in `content/journal/`. The file name is the post's URL: `first-day-on-set.mdx` → `daddybearfilm.com/journal/first-day-on-set`. Lowercase words joined by hyphens.
 
 ```mdx
 ---

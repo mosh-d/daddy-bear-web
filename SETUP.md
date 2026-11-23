@@ -1,6 +1,6 @@
 # Setting up the third-party services
 
-Everything on daddybear.ng that isn't a page — the newsletter, ticket links, the host-a-screening form, WhatsApp, analytics — is handled by an outside service. There is no backend and no database, so there are no server keys to protect: every setting below is a public ID or URL that gets baked into the site when it's built.
+Everything on daddybearfilm.com that isn't a page — the newsletter, ticket links, the host-a-screening form, WhatsApp, analytics — is handled by an outside service. There is no backend and no database, so there are no server keys to protect: every setting below is a public ID or URL that gets baked into the site when it's built.
 
 Work through this in order. Steps 1–2 get the site live; 3–6 switch on each feature. Nothing breaks while a service is unconfigured: the site simply hides that feature rather than showing a dead link or a broken embed.
 
@@ -21,8 +21,8 @@ Work through this in order. Steps 1–2 get the site live; 3–6 switch on each 
 **Time:** ~20 minutes, plus DNS propagation.
 
 1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com) (or sign in to Cardinal's).
-2. Add the domain **daddybear.ng** to Cloudflare: *Add a site* → enter the domain → Free plan. Cloudflare gives you two nameservers.
-3. At the Nigerian registrar where `daddybear.ng` is registered, replace the existing nameservers with Cloudflare's two. This can take a few hours to take effect.
+2. Add the domain **daddybearfilm.com** to Cloudflare: *Add a site* → enter the domain → Free plan. Cloudflare gives you two nameservers.
+3. At the registrar where `daddybearfilm.com` is registered, replace the existing nameservers with Cloudflare's two. This can take a few hours to take effect.
 4. In Cloudflare: *Workers & Pages* → **Create** → **Pages** → **Connect to Git** → authorise GitHub → pick the `daddy-bear-web` repository.
 5. Build settings — these matter, and the defaults are wrong for this site:
 
@@ -34,7 +34,7 @@ Work through this in order. Steps 1–2 get the site live; 3–6 switch on each 
    | Root directory | `frontend` |
 
 6. Click **Save and Deploy**. The first build takes a few minutes. You'll get a `*.pages.dev` address — check the site loads there.
-7. *Custom domains* → **Set up a domain** → `daddybear.ng`. Repeat for `www.daddybear.ng` if you want it. Cloudflare adds the DNS records itself.
+7. *Custom domains* → **Set up a domain** → `daddybearfilm.com`. Repeat for `www.daddybearfilm.com` if you want it. Cloudflare adds the DNS records itself.
 
 From here, every push to `main` deploys automatically.
 
@@ -53,7 +53,7 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 3. Write the welcome email new subscribers receive (Settings → Emails → Welcome email). This is the first thing the audience gets, so it's worth doing before launch.
 4. Decide whether the publication takes paid subscriptions. If it's free only, Settings → turn off paid subscriptions so the signup box doesn't offer payment.
 
-**How to check:** open the home page, tap the signup box, enter an address, confirm it appears in Substack → Subscribers. Signups coming from the website are tagged, so Substack's stats show how many arrived from daddybear.ng.
+**How to check:** open the home page, tap the signup box, enter an address, confirm it appears in Substack → Subscribers. Signups coming from the website are tagged, so Substack's stats show how many arrived from daddybearfilm.com.
 
 ---
 
@@ -146,7 +146,7 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 
 No cookies, so no consent banner is needed under the NDPA, and it's free and unlimited.
 
-1. Cloudflare dashboard → *Analytics & Logs* → **Web Analytics** → add `daddybear.ng`.
+1. Cloudflare dashboard → *Analytics & Logs* → **Web Analytics** → add `daddybearfilm.com`.
 2. Easiest route: in your Pages project → *Settings* → **Enable Web Analytics**. Cloudflare injects it; leave `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` **unset** so it isn't loaded twice.
 3. If you'd rather the site load it, copy the token from the beacon snippet and set `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` instead, then redeploy.
 
@@ -154,7 +154,7 @@ No cookies, so no consent banner is needed under the NDPA, and it's free and unl
 
 More detail, but it sets cookies, so Cardinal should take a view on consent before using it in Nigeria.
 
-1. [analytics.google.com](https://analytics.google.com) → create a property for daddybear.ng → add a **Web** data stream.
+1. [analytics.google.com](https://analytics.google.com) → create a property for daddybearfilm.com → add a **Web** data stream.
 2. Copy the Measurement ID (`G-XXXXXXXXXX`) and set:
 
    ```
@@ -181,7 +181,7 @@ Two things to confirm: the **YouTube** link points at `@korayday`, which looks l
 
 ## 8. Later: shop. and tickets. addresses
 
-When needed, these become redirects in Cloudflare, not separate sites: *Rules* → **Redirect Rules** → e.g. hostname equals `tickets.daddybear.ng` → 301 to `https://daddybear.ng/screenings`.
+When needed, these become redirects in Cloudflare, not separate sites: *Rules* → **Redirect Rules** → e.g. hostname equals `tickets.daddybearfilm.com` → 301 to `https://daddybearfilm.com/screenings`.
 
 ---
 
@@ -189,7 +189,7 @@ When needed, these become redirects in Cloudflare, not separate sites: *Rules* �
 
 | # | Check | Done when |
 |---|---|---|
-| 1 | Site loads on `daddybear.ng` over https | Padlock shows, no certificate warning |
+| 1 | Site loads on `daddybearfilm.com` over https | Padlock shows, no certificate warning |
 | 2 | Sample screenings replaced with real ones | No id starts `sample-`; the build warning is gone |
 | 3 | Sample journal posts replaced or removed | `content/journal/` holds real posts |
 | 4 | Newsletter | Test signup appears in Substack |
@@ -197,7 +197,7 @@ When needed, these become redirects in Cloudflare, not separate sites: *Rules* �
 | 6 | Tickets | Every "Buy tickets" opens the right Tix Africa event |
 | 7 | WhatsApp | Channel, chat and share links all work **on a real phone** |
 | 8 | Analytics | Your visit shows in realtime |
-| 9 | Link preview | Paste daddybear.ng into a WhatsApp chat: title, description and image appear |
+| 9 | Link preview | Paste daddybearfilm.com into a WhatsApp chat: title, description and image appear |
 | 10 | Legal pages | `/privacy` names the analytics you actually enabled |
 | 11 | Film content | Trailer, synopsis and cast in `content/film.ts` once delivered |
 

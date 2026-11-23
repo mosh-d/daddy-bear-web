@@ -22,7 +22,7 @@ Behaviour: opens and closes in ~200ms (fade + 8px slide, `ease-out`; instant und
 
 ## Footer
 
-`bg-ink`, and the **only** place the site asks for the audience. It holds: wordmark, the one-line pitch for the newsletter and WhatsApp channel, WhatsApp channel CTA, WhatsApp click-to-chat, the contact email, the social accounts (icon links, 44px targets), the Substack signup (embed plus a link beside it), a link list (including Host a screening, Privacy and Terms, none of which are in the header), the funder credit, and a link back to **cardinalstudio.ng** — the brief requires the two sites to cross-link ("cardinalstudio.ng remains the company's home and links to the brand site prominently. The two are connected, not merged"), so daddybear.ng must return the favor from every page.
+`bg-ink`, and the **only** place the site asks for the audience. It holds: wordmark, the one-line pitch for the newsletter and WhatsApp channel, WhatsApp channel CTA, WhatsApp click-to-chat, the contact email, the social accounts (icon links, 44px targets), the Substack signup (embed plus a link beside it), a link list (including Host a screening, Privacy and Terms, none of which are in the header), the funder credit, and a link back to **cardinalstudio.ng** — the brief requires the two sites to cross-link ("cardinalstudio.ng remains the company's home and links to the brand site prominently. The two are connected, not merged"), so daddybearfilm.com must return the favor from every page.
 
 The footer links wrap onto several rows on a phone, so each is padded to ~41px tall rather than using `hit-area` (enlarged areas on stacked rows would overlap).
 
