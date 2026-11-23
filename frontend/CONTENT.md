@@ -94,8 +94,6 @@ Tapping a photo opens it fullscreen. For a sharper fullscreen view, also save a 
 
 Every page's red header has a photo blended into the brand colour, in `public/heroes/` (one per page: `home.webp`, `film.webp`, `about.webp`, `journal.webp`, `screenings.webp`, `host.webp`, `privacy.webp`, `terms.webp`, `not-found.webp`). To change one, replace the file, keeping the name. Prepare it **grayscale** (the site tints it red), cropped to **3:2 at 1400×933px**, WebP quality ~60, and **under ~60KB**. Don't blur it. Photos with lots of fine texture (foliage, patterned rugs, scattered toys) come out much heavier: drop the quality or the width (1200×800) until it fits, or pick a calmer photo. The photo loads at low priority after the rest of the page, so it isn't counted in the page-weight budget, which is why the 60KB limit is yours to keep. To move the subject in frame, change `position` where the page sets `image={{ src: ..., position: 'center 30%' }}`.
 
-On phones the hero fills the screen with the text on top and the photo below, so each hero also has a **portrait phone version** in `public/heroes/mobile/` with the same file name: **900×1300px**, grayscale, the subject in the **bottom 60%** of the frame (the top sits under the text), quality ~60, under ~40KB. The site picks it up automatically; without one, phones get the main photo. Each device downloads only its own version.
-
 ## The Home page call to action
 
 The Home hero has one main button, and it changes with the season. In `content/home.ts`, set `ACTIVE_SEASON`:

@@ -197,39 +197,6 @@ body {
 }
 
 /*
- * Hero text on phones (components/Section.tsx). The text sits at the top
- * of a full-screen hero on its own solid ember ground, which runs up to the
- * hero's top edge and fades into the photo over 12rem below the text. The
- * fade eases out (several stops rather than one straight ramp), so there's
- * no visible line where the photo begins, however long the text runs.
- * Full-bleed: it reaches past the Container's padding to the screen edges.
- */
-@media (max-width: 767.98px) {
-  .hero-copy {
-    position: relative;
-  }
-  .hero-copy::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: -4rem -1rem -12rem;
-    background: linear-gradient(
-      to top,
-      rgb(81 31 25 / 0) 0,
-      rgb(81 31 25 / 0.18) 3rem,
-      rgb(81 31 25 / 0.45) 6rem,
-      rgb(81 31 25 / 0.78) 9rem,
-      var(--color-ember-950) 12rem
-    );
-  }
-}
-@media (min-width: 640px) and (max-width: 767.98px) {
-  .hero-copy::before {
-    inset: -6rem -1.5rem -12rem;
-  }
-}
-
-/*
  * Cinema tickets (components/ScreeningCard.tsx). Two round notches are cut
  * out of the ticket's edges where the stub tears off: on a phone, left and
  * right at the top of the 4.5rem stub along the bottom; from tablet up, top
