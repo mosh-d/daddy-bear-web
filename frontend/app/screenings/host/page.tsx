@@ -16,7 +16,7 @@ const CHAT_MESSAGE = 'Hello Daddy Bear team, I would like to host a screening.';
 export default function HostScreeningPage() {
   return (
     <>
-      <Section tone="navy" eyebrow="Host a screening">
+      <Section tone="navy" eyebrow="Host a screening" image={{ src: '/heroes/host.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">
           Bring Daddy Bear to your community.
         </h1>

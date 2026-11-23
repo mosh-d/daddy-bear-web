@@ -138,6 +138,108 @@ body {
   }
 }
 
+/*
+ * Photo galleries (components/PhotoGallery.tsx).
+ *
+ * The track is padded so the first and last photos can settle in the centre
+ * (half the track, less half the narrowest slide: a portrait).
+ */
+.gallery-track {
+  padding-inline: calc(50% - 32vw);
+  scroll-padding-inline: 0;
+}
+@media (min-width: 640px) {
+  .gallery-track {
+    padding-inline: calc(50% - 8.7rem);
+  }
+}
+
+/* Focus: the centred photo is full size, its neighbours shrink and fade
+   back. Where the browser supports scroll-driven animation, this tracks
+   the swipe continuously; elsewhere it eases to the photo that settles. */
+.gallery-slide {
+  transition:
+    scale 450ms var(--ease-soft),
+    opacity 450ms var(--ease-soft);
+}
+.gallery-slide:not([data-active]) {
+  scale: 0.86;
+  opacity: 0.55;
+}
+
+@keyframes gallery-focus {
+  0%,
+  100% {
+    scale: 0.82;
+    opacity: 0.45;
+  }
+  50% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .gallery-slide,
+    .gallery-slide:not([data-active]) {
+      transition: none;
+      scale: 1;
+      opacity: 1;
+      animation: gallery-focus linear both;
+      animation-timeline: view(inline);
+    }
+  }
+}
+
+/* Fullscreen view: the page behind is darkened and blurred, and stays put. */
+html:has(dialog.lightbox[open]) {
+  overflow: hidden;
+}
+.lightbox::backdrop {
+  background: rgb(10 18 38 / 0.82);
+  backdrop-filter: blur(14px) saturate(0.8);
+}
+
+@keyframes lightbox-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+@keyframes lightbox-from-right {
+  from {
+    opacity: 0;
+    translate: 48px 0;
+  }
+}
+@keyframes lightbox-from-left {
+  from {
+    opacity: 0;
+    translate: -48px 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] {
+    animation: lightbox-in 320ms var(--ease-soft);
+  }
+  .lightbox[open]::backdrop {
+    animation: lightbox-backdrop-in 320ms ease-out;
+  }
+  .lightbox-image.from-right {
+    animation: lightbox-from-right 380ms var(--ease-soft);
+  }
+  .lightbox-image.from-left {
+    animation: lightbox-from-left 380ms var(--ease-soft);
+  }
+}
+
 /* On paper (and in anything that captures the whole page at once) there is
    no scrolling to drive the reveals, so show everything. */
 @media print {

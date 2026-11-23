@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Page not found' };
 // Exported as out/404.html, which Cloudflare Pages serves for any unknown path.
 export default function NotFound() {
   return (
-    <Section tone="navy" eyebrow="Page not found">
+    <Section tone="navy" eyebrow="Page not found" image={{ src: '/heroes/not-found.webp', position: 'center 30%' }}>
       <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">
         This page didn&apos;t show up.
       </h1>

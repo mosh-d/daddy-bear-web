@@ -32,6 +32,7 @@ export default function PrivacyPage() {
 
   return (
     <LegalPage
+      heroImage={{ src: '/heroes/privacy.webp', position: 'center 30%' }}
       eyebrow="Privacy Policy"
       title="Your information."
       intro="What we collect through this website, why, and what you can ask us to do about it."

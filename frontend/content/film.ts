@@ -1,6 +1,6 @@
 /**
- * Everything on The Film page. Synopsis and credits are from Cardinal's
- * Website Content & Information Pack. Fill the remaining fields in as
+ * Everything on The Film page. Synopsis, release date and credits are from
+ * Cardinal's About Film pack (2026-11). Fill the remaining fields in as
  * post-production delivers them; anything left empty shows a "coming soon"
  * note or is hidden, so the page never looks broken. See CONTENT.md.
  */
@@ -22,11 +22,14 @@ type CastMember = {
   photo?: string;
 };
 
-type Credit = { role: string; name: string };
+/** One billing-block line, e.g. { role: 'Directed by', names: [...] }. */
+type Credit = { role: string; names: string[] };
 
 export type Film = {
   logline: string;
   intro: string;
+  /** Release date, YYYY-MM-DD. Leave '' to hide it. */
+  releaseDate: string;
   /** YouTube link to the trailer. Leave '' until it's released. */
   trailerUrl: string;
   /** One string per paragraph. */
@@ -43,17 +46,24 @@ export type Film = {
 export const film: Film = {
   logline: 'A story about fathers who show up.',
   intro:
-    'A Nigerian family drama set in Abuja. The trailer, cast and stills land here as post-production delivers them.',
+    'A Nigerian family drama about a widowed father learning to raise his two daughters, rooted in Muslim family life.',
+  releaseDate: '2026-11-21',
   trailerUrl: '',
   synopsis: [
-    'Daddy Bear is a Nigerian family drama set in Abuja. After losing his wife during childbirth, Fahd refuses to remarry and has to learn to raise his newborn daughter and his pre-teen daughter while navigating grief, work and the everyday demands of family life.',
+    'After losing his wife during childbirth, Fahd refuses to remarry and has to learn to raise his newborn daughter and his pre-teen daughter while navigating grief, work and the everyday demands of family life.',
   ],
-  cast: [],
+  cast: [
+    { name: 'Jammal Ibrahim', role: 'Fahd' },
+    { name: 'Dera Osadebe', role: 'Aisha' },
+    { name: 'Ummi Baba-Ahmed', role: 'Aunty Kike' },
+    { name: 'Ame Aiyejina', role: 'Zahra' },
+    { name: 'Ijapari Ben-Hirki', role: 'Khadijah' },
+  ],
   credits: [
-    { role: 'Writer', name: 'Hajarat Abiodun Alli' },
-    { role: 'Co-Directors', name: 'Hajarat Abiodun Alli and Korede Azeez' },
-    { role: 'Producer', name: 'Fulfilment “Fuchi” Nwaturuocha' },
-    { role: 'Production Company', name: 'Cardinal Productions' },
+    { role: 'Directed by', names: ['Hajarat Alli', 'Korede Azeez'] },
+    { role: 'Written by', names: ['Hajarat Alli', 'Cardinal Storyworks'] },
+    { role: 'Produced by', names: ['Fulfillment “Fuchi” Nwaturuocha', 'Korede Azeez'] },
+    { role: 'Production company', names: ['Cardinal Productions'] },
   ],
   world: {
     paragraphs: [],

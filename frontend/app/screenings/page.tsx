@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ScreeningsPage() {
   return (
     <>
-      <Section tone="navy" eyebrow="Screenings & Tickets">
+      <Section tone="navy" eyebrow="Screenings & Tickets" image={{ src: '/heroes/screenings.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">Watch it together.</h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
           Daddy Bear is made to be watched in company: in cinemas, mosques, schools and community centres.

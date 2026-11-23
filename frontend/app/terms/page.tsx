@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <LegalPage
+      heroImage={{ src: '/heroes/terms.webp', position: 'center 25%' }}
       eyebrow="Terms of Service"
       title="Using this website."
       sections={TERMS}

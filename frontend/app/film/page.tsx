@@ -3,14 +3,14 @@ import Image from 'next/image';
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { Badge } from '@/components/Badge';
 import { Figure } from '@/components/Figure';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { film } from '@/content/film';
+import { formatDate } from '@/lib/dates';
 
 export const metadata: Metadata = {
   title: 'The Film',
-  description: 'Daddy Bear: trailer, synopsis, cast and the world of the film.',
+  description: 'Daddy Bear: the synopsis, cast and credits of a Nigerian family drama about a widowed father raising his two daughters.',
 };
 
 function ComingSoon({ label, children }: { label: string; children: React.ReactNode }) {
@@ -25,12 +25,24 @@ function ComingSoon({ label, children }: { label: string; children: React.ReactN
 export default function FilmPage() {
   const { world } = film;
   const hasWorld = world.paragraphs.length > 0 || world.images.length > 0;
+  const castPhotos = film.cast.some((member) => member.photo);
+  const billing = [
+    ...(film.cast.length > 0
+      ? [{ role: 'Starring', names: film.cast.map((member) => `${member.name} as ${member.role}`) }]
+      : []),
+    ...film.credits,
+  ];
 
   return (
     <>
-      <Section tone="navy" eyebrow="The Film">
+      <Section tone="navy" eyebrow="The Film" image={{ src: '/heroes/film.webp', position: 'center 30%' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{film.logline}</h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">{film.intro}</p>
+        {film.releaseDate ? (
+          <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
+            <time dateTime={film.releaseDate}>{formatDate(film.releaseDate)}</time>
+          </p>
+        ) : null}
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-100/90">{film.intro}</p>
         <div className="mt-8">
           <Button href="/screenings" tone="onNavy" showArrow>
             Find a screening
@@ -67,9 +79,9 @@ export default function FilmPage() {
         )}
       </Section>
 
-      <Section tone="cream" eyebrow="Cast">
-        {film.cast.length > 0 ? (
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+      <Section tone="cream" eyebrow="Cast & credits">
+        {castPhotos ? (
+          <div className="mb-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
             {film.cast.map((member) => (
               <div key={member.name}>
                 <div className="relative aspect-4/5 overflow-hidden rounded-card bg-navy-700">
@@ -88,21 +100,30 @@ export default function FilmPage() {
               </div>
             ))}
           </div>
+        ) : null}
+        {billing.length > 0 ? (
+          // The billing block, laid out like the credits on a poster: role on
+          // the left, names on the right, stacked on a phone.
+          <dl className="max-w-2xl divide-y divide-cream-200 border-y border-cream-200">
+            {billing.map((line) => (
+              <div key={line.role} className="grid gap-2 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6">
+                <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">{line.role}</dt>
+                <dd>
+                  <ul className="space-y-1 text-base text-navy-900">
+                    {line.names.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))}
+          </dl>
         ) : (
           <ComingSoon label="Announced closer to release">
             We&apos;ll introduce the cast here as the world of the film comes together. Follow the Journal
             for behind-the-scenes updates in the meantime.
           </ComingSoon>
         )}
-        {film.credits.length > 0 ? (
-          <div className="mt-10 flex flex-wrap gap-3">
-            {film.credits.map((credit) => (
-              <Badge key={`${credit.role}-${credit.name}`}>
-                {credit.role} — {credit.name}
-              </Badge>
-            ))}
-          </div>
-        ) : null}
       </Section>
 
       {hasWorld ? (

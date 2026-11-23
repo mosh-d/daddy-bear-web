@@ -1,66 +1,67 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import type { Metadata } from 'next';
 import { Section } from '@/components/Section';
-import { Card } from '@/components/Card';
-import { Badge } from '@/components/Badge';
 import { Button } from '@/components/Button';
 import { WhatsAppChat } from '@/components/WhatsAppLinks';
-import { film } from '@/content/film';
+import { PhotoGallery } from '@/components/PhotoGallery';
+import { about, type GalleryImage } from '@/content/about';
 import { CONTACT_EMAIL, SUPPORT_CREDIT } from '@/content/links';
 
 export const metadata: Metadata = {
   title: 'About & Mission',
   description:
-    'Who made Daddy Bear and why: three women, a grant, and a mission to celebrate fathers who show up.',
+    'The mission behind Daddy Bear, a Cardinal Productions feature about fatherhood, loss and family, with its characters, behind-the-scenes photos and the team who made it.',
 };
 
+/**
+ * Pairs each photo with its larger fullscreen version, if one exists in a
+ * `full/` folder beside it (checked at build time). A photo added without
+ * one still opens fullscreen, just at its carousel size.
+ */
+function withFullSize(image: GalleryImage): GalleryImage {
+  if (image.full) return image;
+  const full = image.src.replace(/\/([^/]+)$/, '/full/$1');
+  return fs.existsSync(path.join(process.cwd(), 'public', full)) ? { ...image, full } : image;
+}
+
 export default function AboutPage() {
+  const [lead, ...rest] = about.mission;
+
   return (
     <>
-      <Section tone="navy" eyebrow="About & Mission">
-        <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">
-          Who made this, and why.
-        </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
-          Daddy Bear began with three women, a grant, and a mission: to celebrate the fathers who show up,
-          quietly, consistently, without asking for recognition. Cardinal Productions Limited exists to
-          tell that story well, and to build the audience and the platform that keeps telling it long
-          after the credits roll.
-        </p>
+      <Section tone="navy" eyebrow="About & Mission" image={{ src: '/heroes/about.webp' }}>
+        <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{about.title}</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream-100/90">{lead}</p>
       </Section>
 
-      <Section tone="cream" eyebrow="The mission">
-        <Card className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-gold-600">
-            Full mission story from Cardinal Productions
-          </p>
-          <p className="mt-2 text-base leading-relaxed text-ink/80">
-            This is where the complete origin story goes once Cardinal delivers it: how the grant came
-            together, why fatherhood, and what the team wants audiences to feel walking out of a
-            screening. Placeholder copy only; nothing here should be treated as final.
-          </p>
-        </Card>
-      </Section>
-
-      <Section tone="cream-alt" eyebrow="The team">
-        <div className="flex flex-wrap gap-3">
-          {film.credits.map((credit) => (
-            <Badge key={`${credit.role}-${credit.name}`}>
-              {credit.role} — {credit.name}
-            </Badge>
+      <Section tone="cream" eyebrow="The story">
+        {/* Full width, flowing into two columns from desktop up so lines stay
+            a comfortable reading length. */}
+        <div className="text-base leading-relaxed text-ink/90 lg:columns-2 lg:gap-12">
+          {rest.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)} className="mb-5 break-inside-avoid last:mb-0">
+              {paragraph}
+            </p>
           ))}
         </div>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink/70">
-          Cardinal Productions Limited is based in Gwagwalada, FCT, Abuja. Team photography lands here
-          once supplied.
-        </p>
       </Section>
+
+      {about.galleries.map((gallery, index) => (
+        <Section key={gallery.eyebrow} tone={index % 2 === 0 ? 'cream-alt' : 'cream'} eyebrow={gallery.eyebrow}>
+          <h2 className="mb-8 max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+            {gallery.title}
+          </h2>
+          <PhotoGallery label={gallery.eyebrow} images={gallery.images.map(withFullSize)} />
+        </Section>
+      ))}
 
       <Section tone="cream" eyebrow="Supported by">
         {/* Funder credit, in the exact wording Cardinal's pack requires. Partner
             logos go beside it once supplied, per the partners' brand guidelines. */}
         <p className="font-display text-xl font-semibold text-navy-900 sm:text-2xl">{SUPPORT_CREDIT}</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/70">
-          Daddy Bear is supported by Africa No Filter&apos;s Entertainment and Media Hubs Program.
+          Through the Entertainment and Media Hubs Program, powered by CcHUB Creative Economy Practice.
         </p>
       </Section>
 

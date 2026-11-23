@@ -77,7 +77,22 @@ Write the post here in plain paragraphs. A blank line starts a new paragraph.
 
 ## The Film page
 
-Edit `content/film.ts`: `trailerUrl` (a YouTube link), `synopsis` (one string per paragraph), `cast` (name, role, optional photo under `public/film/`), `credits`, and `world` (paragraphs and sized images, as for `<Figure>`). Empty fields show "coming soon" or are hidden, so fill them in as they arrive.
+Edit `content/film.ts`: `trailerUrl` (a YouTube link), `releaseDate` (`YYYY-MM-DD`, shown under the title; `''` hides it), `synopsis` (one string per paragraph), `cast` (name, role, optional photo under `public/film/`), `credits` (the billing block: a `role` such as "Directed by" and a list of `names`), and `world` (paragraphs and sized images, as for `<Figure>`). The cast list becomes the "Starring" line of the billing block automatically. Empty fields show "coming soon" or are hidden, so fill them in as they arrive.
+
+## The About page
+
+Edit `content/about.ts`:
+
+- `mission`: one string per paragraph. The first is the large lead at the top of the page.
+- `galleries`: the three swipeable photo rows (Characters, Behind the scenes, The team). Each photo has `src`, `alt` (a short description for screen readers, required), its real `width`/`height`, and an optional `caption` (e.g. a name and role) shown under it. Reorder a row by reordering its list.
+
+Gallery photos live in `public/about/characters/`, `public/about/behind-the-scenes/` and `public/about/team/`, named after the original photo number (`FXT56813.jpeg` → `fxt56813.webp`). Prepare a new one the same way as Journal images, but **800px wide for a portrait** and **1200px wide for a landscape**, WebP, quality ~70.
+
+Tapping a photo opens it fullscreen. For a sharper fullscreen view, also save a larger copy with the **same file name** in the `full/` folder beside it (`public/about/team/full/fxt55781.webp`): **1200px wide for a portrait, 1800px for a landscape**, quality ~72, ideally under 250KB. The site picks it up automatically; without one, fullscreen shows the carousel-size photo.
+
+## Hero photos
+
+Every page's navy header has a photo blended into the blue, in `public/heroes/` (one per page: `home.webp`, `film.webp`, `about.webp`, `journal.webp`, `screenings.webp`, `host.webp`, `privacy.webp`, `terms.webp`, `not-found.webp`). To change one, replace the file, keeping the name. Prepare it **grayscale** (the site tints it blue), cropped to **3:2 at 1400×933px**, WebP quality ~60, and **under ~60KB**. Don't blur it. Photos with lots of fine texture (foliage, patterned rugs, scattered toys) come out much heavier: drop the quality or the width (1200×800) until it fits, or pick a calmer photo. The photo loads at low priority after the rest of the page, so it isn't counted in the page-weight budget, which is why the 60KB limit is yours to keep. To move the subject in frame, change `position` where the page sets `image={{ src: ..., position: 'center 30%' }}`.
 
 ## The Home page call to action
 

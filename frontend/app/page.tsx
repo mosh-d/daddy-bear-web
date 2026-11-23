@@ -11,11 +11,11 @@ import { screenings } from '@/lib/screenings';
 const PILLARS = [
   {
     title: 'The film',
-    body: 'A story about fathers who show up. The trailer, synopsis and cast land on The Film page as post-production delivers them.',
+    body: 'A widowed father learning to raise his two daughters through grief, work and everyday family life. Meet the cast on The Film page.',
   },
   {
     title: 'The mission',
-    body: 'Three women, a grant, and a mission to celebrate the fathers who don’t make headlines. Read the full story on About & Mission.',
+    body: 'Love is shown not only through provision, but through presence, care and asking for help. Read the full story on About & Mission.',
   },
   {
     title: 'The community',
@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Section tone="navy" eyebrow={homeHero.eyebrow}>
+      <Section tone="navy" eyebrow={homeHero.eyebrow} image={{ src: '/heroes/home.webp', position: 'center 35%' }}>
         <h1 className="max-w-3xl font-display text-4xl font-semibold sm:text-5xl md:text-6xl">{homeHero.title}</h1>
         <p className="mt-4 max-w-2xl font-display-italic text-xl italic text-cream-100 sm:text-2xl">{homeHero.tagline}</p>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">{homeHero.paragraph}</p>

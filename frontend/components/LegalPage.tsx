@@ -1,4 +1,4 @@
-import { Section } from './Section';
+import { Section, type HeroImage } from './Section';
 import { CONTACT_EMAIL } from '@/content/links';
 import { formatDate } from '@/lib/dates';
 import type { LegalSection } from '@/content/legal';
@@ -35,16 +35,18 @@ export function LegalPage({
   intro,
   sections,
   updated,
+  heroImage,
 }: {
   eyebrow: string;
   title: string;
   intro?: string;
   sections: LegalSection[];
   updated: string;
+  heroImage?: HeroImage;
 }) {
   return (
     <>
-      <Section tone="navy" eyebrow={eyebrow}>
+      <Section tone="navy" eyebrow={eyebrow} image={heroImage}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{title}</h1>
         {intro ? <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">{intro}</p> : null}
         <p className="mt-6 text-sm text-cream-100/70">Last updated: {formatDate(updated)}</p>

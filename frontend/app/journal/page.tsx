@@ -13,7 +13,7 @@ export default function JournalPage() {
 
   return (
     <>
-      <Section tone="navy" eyebrow="The Journal">
+      <Section tone="navy" eyebrow="The Journal" image={{ src: '/heroes/journal.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">
           Follow the production, day by day.
         </h1>
