@@ -113,6 +113,12 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 
    (The full `https://tally.so/r/XXXXXX` link works here too.) Redeploy.
 
+   **Daddy Bear's live form** (published 2026-11-23): [`https://tally.so/r/DqBL7E`](https://tally.so/r/DqBL7E), so the value is:
+
+   ```
+   NEXT_PUBLIC_TALLY_FORM_ID = DqBL7E
+   ```
+
 **How to check:** open `/screenings/host`. The form appears in the page. Submit a test entry and confirm the email notification arrives. Until this is set, the page shows "Applications open soon" with a WhatsApp link instead.
 
 ---
