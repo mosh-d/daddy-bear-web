@@ -15,7 +15,7 @@ export function NewsletterSignup({
   label = 'Or open Substack in a new tab',
   campaign = 'home',
 }: {
-  tone?: 'onNavy' | 'onCream';
+  tone?: 'onDark' | 'onCream';
   label?: string;
   campaign?: string;
 }) {

@@ -89,7 +89,7 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
   }, []);
 
   const roundButton =
-    'flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/20 text-navy-900 transition-[background-color,opacity,translate] duration-200 hover:bg-navy-900/5 active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 disabled:pointer-events-none disabled:opacity-30';
+    'flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 text-ink transition-[background-color,opacity,translate] duration-200 hover:bg-ink/5 active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500 disabled:pointer-events-none disabled:opacity-30';
 
   return (
     <div role="region" aria-roledescription="carousel" aria-label={label}>
@@ -110,7 +110,7 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
               <button
                 type="button"
                 onClick={() => setOpen(index)}
-                className="group relative block cursor-zoom-in overflow-hidden rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100"
+                className="group relative block cursor-zoom-in overflow-hidden rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100"
                 aria-label={`View fullscreen: ${image.alt}`}
               >
                 <Image
@@ -119,13 +119,13 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
                   width={image.width}
                   height={image.height}
                   draggable={false}
-                  className={`h-auto bg-navy-700 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] sm:h-[26rem] sm:w-auto ${
+                  className={`h-auto bg-ember-900 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] sm:h-[26rem] sm:w-auto ${
                     isPortrait ? 'w-[64vw]' : 'w-[82vw]'
                   }`}
                 />
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
               </button>
               {image.caption ? (
@@ -146,11 +146,11 @@ export function PhotoGallery({ label, images }: { label: string; images: Gallery
               onClick={() => goTo(index)}
               aria-label={`Show photo ${index + 1} of ${images.length}`}
               aria-current={index === active ? 'true' : undefined}
-              className="hit-area flex h-6 items-center focus-visible:outline-none [&:focus-visible>span]:ring-2 [&:focus-visible>span]:ring-gold-500"
+              className="hit-area flex h-6 items-center focus-visible:outline-none [&:focus-visible>span]:ring-2 [&:focus-visible>span]:ring-ember-500"
             >
               <span
                 className={`block h-1.5 rounded-full transition-[width,background-color] duration-300 ease-out ${
-                  index === active ? 'w-6 bg-gold-600' : 'w-1.5 bg-navy-900/25'
+                  index === active ? 'w-6 bg-ember-600' : 'w-1.5 bg-ink/25'
                 }`}
               />
             </button>

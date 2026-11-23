@@ -6,8 +6,8 @@ import type { JournalPostMeta } from '@/lib/journal';
 
 export function JournalCard({ post }: { post: JournalPostMeta }) {
   return (
-    <article className="group overflow-hidden rounded-card border border-cream-200 bg-cream-50 transition-[translate,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-navy-950/10">
-      <div className="relative aspect-video bg-navy-700">
+    <article className="group flex h-full flex-col overflow-hidden rounded-card border border-cream-200 bg-cream-50 transition-[translate,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-ink/10">
+      <div className="relative aspect-video bg-ember-900">
         {post.cover ? (
           <Image
             src={post.cover}
@@ -22,20 +22,24 @@ export function JournalCard({ post }: { post: JournalPostMeta }) {
           </div>
         )}
       </div>
-      <div className="space-y-3 p-6">
-        <div className="flex items-center gap-3 text-xs text-ink/60">
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          {post.tag ? <Badge>{post.tag}</Badge> : null}
+      {/* Text on top, "Read the update" pinned to the bottom, so the links
+          line up across cards whatever the length of the excerpt. */}
+      <div className="flex flex-1 flex-col justify-between gap-5 p-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-xs text-ink/60">
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            {post.tag ? <Badge>{post.tag}</Badge> : null}
+          </div>
+          <h3 className="font-display text-lg font-semibold text-ink">
+            <Link href={`/journal/${post.slug}`} className="hit-area inline-block hover:text-ember-600">
+              {post.title}
+            </Link>
+          </h3>
+          <p className="text-sm leading-relaxed text-ink/80">{post.excerpt}</p>
         </div>
-        <h3 className="font-display text-lg font-semibold text-navy-900">
-          <Link href={`/journal/${post.slug}`} className="hit-area inline-block hover:text-gold-600">
-            {post.title}
-          </Link>
-        </h3>
-        <p className="text-sm leading-relaxed text-ink/80">{post.excerpt}</p>
         <Link
           href={`/journal/${post.slug}`}
-          className="hit-area inline-block text-sm font-semibold text-navy-900 underline-offset-4 hover:text-gold-600 hover:underline"
+          className="hit-area self-start text-sm font-semibold text-ink underline-offset-4 hover:text-ember-600 hover:underline"
         >
           Read the update<span className="sr-only">: {post.title}</span>
         </Link>

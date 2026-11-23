@@ -16,7 +16,7 @@ export function SubstackEmbed() {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="h-[220px] overflow-hidden rounded-card border border-navy-700 bg-cream-50">
+    <div className="h-[220px] overflow-hidden rounded-card border border-ink-800 bg-cream-50">
       {loaded ? (
         <iframe
           src={SUBSTACK_EMBED_URL}
@@ -29,9 +29,9 @@ export function SubstackEmbed() {
         <button
           type="button"
           onClick={() => setLoaded(true)}
-          className="flex h-full w-full flex-col items-center justify-center gap-2 px-6 text-center transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold-500"
+          className="flex h-full w-full flex-col items-center justify-center gap-2 px-6 text-center transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ember-500"
         >
-          <span className="font-display text-lg font-semibold text-navy-900">
+          <span className="font-display text-lg font-semibold text-ink">
             Subscribe here without leaving the page
           </span>
           <span className="text-sm text-ink/70">

@@ -9,14 +9,14 @@ import { VideoEmbed } from '@/components/VideoEmbed';
  * post without an import. See CONTENT.md for usage.
  */
 const components: MDXComponents = {
-  h2: (props) => <h2 className="mt-10 font-display text-2xl font-semibold text-navy-900" {...props} />,
-  h3: (props) => <h3 className="mt-8 font-display text-xl font-semibold text-navy-900" {...props} />,
+  h2: (props) => <h2 className="mt-10 font-display text-2xl font-semibold text-ink" {...props} />,
+  h3: (props) => <h3 className="mt-8 font-display text-xl font-semibold text-ink" {...props} />,
   p: (props) => <p className="mt-4" {...props} />,
   ul: (props) => <ul className="mt-4 list-disc space-y-2 pl-6" {...props} />,
   ol: (props) => <ol className="mt-4 list-decimal space-y-2 pl-6" {...props} />,
   blockquote: (props) => (
     <blockquote
-      className="mt-6 border-l-2 border-gold-500 pl-4 font-display-italic text-lg italic text-navy-900"
+      className="mt-6 border-l-2 border-ember-500 pl-4 font-display-italic text-lg italic text-ink"
       {...props}
     />
   ),
@@ -28,14 +28,14 @@ const components: MDXComponents = {
       <table className="w-full border-collapse text-left text-sm" {...props} />
     </div>
   ),
-  th: (props) => <th className="border-b border-cream-200 px-3 py-2 font-semibold text-navy-900" {...props} />,
+  th: (props) => <th className="border-b border-cream-200 px-3 py-2 font-semibold text-ink" {...props} />,
   td: (props) => <td className="border-b border-cream-200 px-3 py-2" {...props} />,
   a: ({ href = '', ...props }: ComponentPropsWithoutRef<'a'>) => {
     const external = /^https?:\/\//.test(href);
     return (
       <a
         href={href}
-        className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold-600"
+        className="font-semibold text-ink underline underline-offset-4 hover:text-ember-600"
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         {...props}
       />

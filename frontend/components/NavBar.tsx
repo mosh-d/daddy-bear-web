@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from './Container';
 import { MobileMenu } from './MobileMenu';
@@ -10,13 +11,18 @@ import { NavLinks } from './NavLinks';
  */
 export function NavBar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-navy-700/60 bg-navy-900/95 py-3 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-ink-800 bg-ink/95 py-3 backdrop-blur">
       <Container className="flex items-center justify-between gap-6">
-        <Link
-          href="/"
-          className="hit-area font-display text-lg font-semibold uppercase tracking-wide text-cream-50"
-        >
-          Daddy Bear
+        {/* The gold wordmark on Ink, an approved pairing (Brand Guide p.2). */}
+        <Link href="/" className="hit-area block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400">
+          <Image
+            src="/brand/wordmark-gold-sm.png"
+            alt="Daddy Bear"
+            width={400}
+            height={50}
+            loading="eager"
+            className="h-5 w-auto sm:h-6"
+          />
         </Link>
         <NavLinks />
         <MobileMenu />

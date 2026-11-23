@@ -89,3 +89,69 @@ export function ChevronUpIcon({ className = 'h-4 w-4' }: { className?: string })
     </svg>
   );
 }
+
+/*
+ * Film motifs. Same 24px grid and 1.75 stroke as the rest of the set, so
+ * they sit beside text at any size and take the colour of the text around
+ * them (gold on the hero, Deep Ember on cream).
+ */
+const filmStroke = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.75,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+} as const;
+
+export function ClapperboardIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...filmStroke}>
+      <path d="M4 10h16v8.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5V10Z" />
+      <path d="M4 10 3.5 7.2a1 1 0 0 1 .8-1.2l13.6-2.4a1 1 0 0 1 1.2.8l.5 2.8L4 10Z" />
+      <path d="m8.6 5.2 2.2 3.4M13.4 4.4l2.2 3.4" />
+    </svg>
+  );
+}
+
+export function FilmReelIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...filmStroke}>
+      <circle cx="11" cy="11" r="8" />
+      <circle cx="11" cy="11" r="1.2" />
+      <circle cx="11" cy="6.5" r="1.6" />
+      <circle cx="11" cy="15.5" r="1.6" />
+      <circle cx="6.5" cy="11" r="1.6" />
+      <circle cx="15.5" cy="11" r="1.6" />
+      <path d="M11 19h10" />
+    </svg>
+  );
+}
+
+export function FilmCameraIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...filmStroke}>
+      <rect x="2.5" y="10" width="12.5" height="9" rx="1.5" />
+      <path d="m15 13 5.5-3v9L15 16" />
+      <circle cx="6" cy="6" r="2.5" />
+      <circle cx="11.5" cy="6" r="2.5" />
+    </svg>
+  );
+}
+
+export function TicketIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...filmStroke}>
+      <path d="M3.5 7.5a1.5 1.5 0 0 1 1.5-1.5h14a1.5 1.5 0 0 1 1.5 1.5V10a2 2 0 0 0 0 4v2.5A1.5 1.5 0 0 1 19 18H5a1.5 1.5 0 0 1-1.5-1.5V14a2 2 0 0 0 0-4V7.5Z" />
+      <path d="M14.5 6.5v1.5M14.5 11.25v1.5M14.5 16v1.5" />
+    </svg>
+  );
+}
+
+export const FILM_ICONS = {
+  clapper: ClapperboardIcon,
+  reel: FilmReelIcon,
+  camera: FilmCameraIcon,
+  ticket: TicketIcon,
+} as const;
+
+export type FilmIconName = keyof typeof FILM_ICONS;

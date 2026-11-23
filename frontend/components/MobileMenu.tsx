@@ -72,7 +72,7 @@ export function MobileMenu() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((isOpen) => !isOpen)}
-        className="-my-2 -mr-2 flex h-11 w-11 items-center justify-center rounded-pill text-cream-50 transition-colors hover:text-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+        className="-my-2 -mr-2 flex h-11 w-11 items-center justify-center rounded-pill text-cream-50 transition-colors hover:text-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
       >
         <span className="transition-transform duration-200 ease-out" style={{ rotate: open ? '90deg' : '0deg' }}>
           {open ? <CloseIcon /> : <MenuIcon />}
@@ -84,7 +84,7 @@ export function MobileMenu() {
       <div
         aria-hidden="true"
         onClick={() => setOpen(false)}
-        className={`absolute inset-x-0 top-full h-dvh bg-navy-950/60 transition-opacity duration-200 ${
+        className={`absolute inset-x-0 top-full h-dvh bg-ink/60 transition-opacity duration-200 ${
           open ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
       />
@@ -95,13 +95,13 @@ export function MobileMenu() {
         // Any link tapped inside the panel closes it, including one to the
         // page already open (which doesn't change the route).
         onClick={(event) => (event.target as HTMLElement).closest('a') && setOpen(false)}
-        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] overflow-y-auto overscroll-contain border-b border-navy-700 bg-navy-900 shadow-xl transition-[opacity,translate,visibility] duration-200 ease-out ${
+        className={`absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] overflow-y-auto overscroll-contain border-b border-ink-800 bg-ink shadow-xl transition-[opacity,translate,visibility] duration-200 ease-out ${
           open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
         }`}
       >
         <Container className="pb-8 pt-2">
           <nav aria-label="Primary">
-            <ul className="divide-y divide-navy-700/60">
+            <ul className="divide-y divide-ink-800">
               {NAV_LINKS.map((link) => {
                 const active = isActive(pathname, link.href);
                 return (
@@ -109,7 +109,7 @@ export function MobileMenu() {
                     <Link
                       href={link.href}
                       aria-current={active ? 'page' : undefined}
-                      // Same treatment as the inline nav (NavLinks): Inter,
+                      // Same treatment as the inline nav (NavLinks): Work Sans,
                       // uppercase, semibold, wide tracking. py-3 keeps the row
                       // at 44px even at this smaller size.
                       className={`flex items-center justify-between py-3 text-sm font-semibold uppercase tracking-wide transition-colors hover:text-gold-400 ${
@@ -133,10 +133,10 @@ export function MobileMenu() {
             Host a screening
           </Link>
           <div className="mt-8 flex flex-col items-start gap-4">
-            <Button href="/#join" tone="onNavy" showArrow>
+            <Button href="/#join" tone="onDark" showArrow>
               Join the list
             </Button>
-            <WhatsAppCTA tone="onNavy" />
+            <WhatsAppCTA tone="onDark" />
           </div>
         </Container>
       </div>

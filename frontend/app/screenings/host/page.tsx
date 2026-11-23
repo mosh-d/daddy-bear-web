@@ -16,7 +16,7 @@ const CHAT_MESSAGE = 'Hello Daddy Bear team, I would like to host a screening.';
 export default function HostScreeningPage() {
   return (
     <>
-      <Section tone="navy" eyebrow="Host a screening" image={{ src: '/heroes/host.webp' }}>
+      <Section tone="ember" eyebrow="Host a screening" eyebrowIcon="ticket" image={{ src: '/heroes/host.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">
           Bring Daddy Bear to your community.
         </h1>
@@ -38,7 +38,7 @@ export default function HostScreeningPage() {
                   href={TALLY_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold-600"
+                  className="font-semibold text-ink underline underline-offset-4 hover:text-ember-600"
                 >
                   Open it in a new tab
                 </a>
@@ -47,7 +47,7 @@ export default function HostScreeningPage() {
             </>
           ) : (
             <Card>
-              <p className="text-sm font-semibold uppercase tracking-wide text-gold-600">
+              <p className="text-sm font-semibold uppercase tracking-wide text-ember-800">
                 Applications open soon
               </p>
               <p className="mt-2 text-base leading-relaxed text-ink/80">

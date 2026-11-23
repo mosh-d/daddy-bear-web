@@ -27,14 +27,14 @@ function Select({
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-navy-900">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-ink">
         {label}
       </label>
       <select
         id={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-card border border-cream-200 bg-cream-50 px-4 py-3 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+        className="w-full rounded-card border border-cream-200 bg-cream-50 px-4 py-3 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -116,7 +116,7 @@ export function ScreeningsList({ screenings, buildDay }: { screenings: Screening
             type="checkbox"
             checked={showPast}
             onChange={(event) => setShowPast(event.target.checked)}
-            className="h-4 w-4 rounded border-cream-200 focus-visible:ring-2 focus-visible:ring-gold-500"
+            className="h-4 w-4 rounded border-cream-200 focus-visible:ring-2 focus-visible:ring-ember-500"
           />
           Show past screenings
         </label>
@@ -150,7 +150,7 @@ export function ScreeningsList({ screenings, buildDay }: { screenings: Screening
 
       {past.length > 0 ? (
         <div className="mt-12">
-          <h2 className="font-display text-xl font-semibold text-navy-900">Past screenings</h2>
+          <h2 className="font-display text-xl font-semibold text-ink">Past screenings</h2>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             {past.map((screening) => (
               <ScreeningCard key={screening.id} screening={screening} past />

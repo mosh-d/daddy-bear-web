@@ -92,7 +92,7 @@ Tapping a photo opens it fullscreen. For a sharper fullscreen view, also save a 
 
 ## Hero photos
 
-Every page's navy header has a photo blended into the blue, in `public/heroes/` (one per page: `home.webp`, `film.webp`, `about.webp`, `journal.webp`, `screenings.webp`, `host.webp`, `privacy.webp`, `terms.webp`, `not-found.webp`). To change one, replace the file, keeping the name. Prepare it **grayscale** (the site tints it blue), cropped to **3:2 at 1400×933px**, WebP quality ~60, and **under ~60KB**. Don't blur it. Photos with lots of fine texture (foliage, patterned rugs, scattered toys) come out much heavier: drop the quality or the width (1200×800) until it fits, or pick a calmer photo. The photo loads at low priority after the rest of the page, so it isn't counted in the page-weight budget, which is why the 60KB limit is yours to keep. To move the subject in frame, change `position` where the page sets `image={{ src: ..., position: 'center 30%' }}`.
+Every page's red header has a photo blended into the brand colour, in `public/heroes/` (one per page: `home.webp`, `film.webp`, `about.webp`, `journal.webp`, `screenings.webp`, `host.webp`, `privacy.webp`, `terms.webp`, `not-found.webp`). To change one, replace the file, keeping the name. Prepare it **grayscale** (the site tints it red), cropped to **3:2 at 1400×933px**, WebP quality ~60, and **under ~60KB**. Don't blur it. Photos with lots of fine texture (foliage, patterned rugs, scattered toys) come out much heavier: drop the quality or the width (1200×800) until it fits, or pick a calmer photo. The photo loads at low priority after the rest of the page, so it isn't counted in the page-weight budget, which is why the 60KB limit is yours to keep. To move the subject in frame, change `position` where the page sets `image={{ src: ..., position: 'center 30%' }}`.
 
 ## The Home page call to action
 
@@ -118,14 +118,18 @@ The hero paragraph ("the film in one paragraph") is in the same file.
 
 ## The link-preview picture
 
-`public/og.png` (1200×630) is what appears when someone shares the site on WhatsApp or social media. It's a plain branded card for now — **replace it with Cardinal's key art when it arrives**, keeping the same name, size and format. A Journal post with a `cover` uses that cover instead.
+`public/og.png` (1200×630) is what appears when someone shares the site on WhatsApp or social media: the gold wordmark on Ember Red, from the Brand Guide. To replace it (with key art, say), keep the same name, size and format. A Journal post with a `cover` uses that cover instead.
+
+## Logo files
+
+The logos are in `public/brand/` (wordmark, primary icon) and `app/` (`icon.png`, `apple-icon.png`, `favicon.ico`, made from the yellow Accent icon). Replace a file with the same name and size to update it everywhere. Don't recolour them: the Brand Guide allows only its four colourways.
 
 ## Page weight
 
 `npm run build` measures each page's initial download and fails if one goes over budget (limits are at the top of `scripts/check-budget.mjs`). Baseline on 2026-09-19, gzipped:
 
 - **~200KB JavaScript** per page. About 165KB of that is React and the Next.js router, which every page carries; the rest is the site's own code, mostly the newsletter form.
-- **~65KB fonts**: Fraunces 600 and Inter, preloaded. The Fraunces italic (the Home tagline) loads only where it's used.
+- **~65KB fonts**: Fraunces 600 and Work Sans, preloaded. The Fraunces italic (the Home tagline) loads only where it's used.
 - **~280KB total** on content pages.
 
 Images below the fold are lazy-loaded and don't count. If the check fails after a change, look at what that change added before raising the limit.

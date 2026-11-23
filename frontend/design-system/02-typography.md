@@ -3,7 +3,7 @@
 ## Pairing
 
 - **Display / headings — Fraunces** (`font-display`). A warm serif with real optical presence at large sizes and a genuine italic, loaded via `next/font/google` in `app/layout.tsx`. Used for page titles, section headers, and the wordmark. Its warmth is the point: it reads as considered and human, not corporate — the opposite of Black Market's aggressive distressed western display font.
-- **Body / UI — Inter** (`font-body`). Clean, highly legible at small sizes on low-end phone screens, huge language/character coverage, loads fast as a self-hosted variable font via `next/font`. Used for paragraphs, nav, buttons, form fields, captions.
+- **Body / UI — Work Sans** (`font-body`), per the Brand Guide (p.3): a clear, open sans serif, Regular (400) and SemiBold (600) only. Self-hosted via `next/font`. Used for paragraphs, nav, buttons, form fields, captions.
 
 ### How they load (page weight)
 
@@ -11,11 +11,11 @@ Fonts are self-hosted by `next/font` at build time and use `font-display: swap`,
 
 - **Fraunces upright loads at one static weight, 600**, the only weight headings use, and is preloaded because headings are above the fold. (`font-display` + `font-semibold`.)
 - **Fraunces italic loads at 400 as a separate family** (`font-display-italic italic`) and is *not* preloaded, so browsers only download it on pages that use it: the Home tagline and Journal blockquotes.
-- **Inter stays a variable font**, since the site uses three of its weights (400, 500, 600) on every page and one variable file is smaller than three static ones.
+- **Work Sans loads two weights, 400 and 600**, the only two the brand uses. Use `font-normal` or `font-semibold`, never `font-medium` or `font-bold` (the browser would fake them).
 
 Using another Fraunces weight (e.g. `font-display font-bold`) would make the browser fake it from the 600 file. Add the weight in `app/layout.tsx` first, and check the page-weight budget.
 
-Both typefaces are placeholders pending Cardinal's final brand identity assets (brief promises "brand identity and design language" as something Cardinal provides). Swapping either is a one-line change in `app/layout.tsx` since every component reads `font-display`/`font-body` utilities, never a hardcoded font name.
+Both typefaces are confirmed by the Brand Guide v1.0 (Fraunces SemiBold for headlines, Work Sans for body and UI). Swapping either is still a one-line change in `app/layout.tsx` since every component reads `font-display`/`font-body` utilities, never a hardcoded font name.
 
 ## Scale (mobile-first, fluid where it matters)
 
@@ -25,8 +25,8 @@ Both typefaces are placeholders pending Cardinal's final brand identity assets (
 | Section title | `text-2xl sm:text-3xl font-display font-semibold` | |
 | Card / subsection title | `text-lg sm:text-xl font-display font-semibold` | |
 | Body | `text-base leading-relaxed font-body` | 16px minimum — never smaller for paragraph text, per mobile-first accessibility |
-| Small / meta | `text-sm font-body text-navy-500` (on navy) or `text-ink/70` (on cream) | Dates, tags, captions |
-| Eyebrow label | `text-xs sm:text-sm font-body font-semibold uppercase tracking-[0.2em]` | Gold, above section titles — the one deliberate structural echo of Black Market's "- SECTION LABEL" eyebrow convention |
+| Small / meta | `text-sm font-body text-cream-100/70` (on dark) or `text-ink/70` (on cream) | Dates, tags, captions |
+| Eyebrow label | `text-xs sm:text-sm font-body font-semibold uppercase tracking-[0.2em]` | `ember-800` on cream, `gold-400` on dark, above section titles — the one deliberate structural echo of Black Market's "- SECTION LABEL" eyebrow convention |
 
 ## Rules
 

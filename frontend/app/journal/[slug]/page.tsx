@@ -50,9 +50,9 @@ export default async function JournalPostPage(props: PageProps<'/journal/[slug]'
           <time dateTime={meta.date}>{formatDate(meta.date)}</time>
           {meta.tag ? <Badge>{meta.tag}</Badge> : null}
         </div>
-        <h1 className="mt-3 font-display text-3xl font-semibold text-navy-900 sm:text-4xl">{meta.title}</h1>
+        <h1 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">{meta.title}</h1>
         {meta.cover ? (
-          <div className="relative mt-8 aspect-video overflow-hidden rounded-card bg-navy-700">
+          <div className="relative mt-8 aspect-video overflow-hidden rounded-card bg-ember-900">
             <Image
               src={meta.cover}
               alt={meta.coverAlt ?? ''}

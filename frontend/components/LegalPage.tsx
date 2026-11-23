@@ -18,7 +18,7 @@ function Paragraph({ text }: { text: string }) {
           {index < parts.length - 1 ? (
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold-600"
+              className="font-semibold text-ink underline underline-offset-4 hover:text-ember-600"
             >
               {CONTACT_EMAIL}
             </a>
@@ -46,7 +46,7 @@ export function LegalPage({
 }) {
   return (
     <>
-      <Section tone="navy" eyebrow={eyebrow} image={heroImage}>
+      <Section tone="ember" eyebrow={eyebrow} image={heroImage}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{title}</h1>
         {intro ? <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">{intro}</p> : null}
         <p className="mt-6 text-sm text-cream-100/70">Last updated: {formatDate(updated)}</p>
@@ -56,7 +56,7 @@ export function LegalPage({
         <div className="max-w-prose text-base leading-relaxed text-ink/90">
           {sections.map((section) => (
             <section key={section.title} className="mt-10 first:mt-0">
-              <h2 className="font-display text-xl font-semibold text-navy-900">{section.title}</h2>
+              <h2 className="font-display text-xl font-semibold text-ink">{section.title}</h2>
               {section.body.map((paragraph) => (
                 <Paragraph key={paragraph.slice(0, 32)} text={paragraph} />
               ))}

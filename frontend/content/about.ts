@@ -5,6 +5,8 @@
  * or reorder a photo by editing its list. See CONTENT.md.
  */
 
+import type { FilmIconName } from '@/components/Icons';
+
 export type GalleryImage = {
   /** Path under public/, e.g. /about/team/fxt55781.webp */
   src: string;
@@ -26,6 +28,8 @@ export type GalleryImage = {
 export type Gallery = {
   /** Small label above the row. */
   eyebrow: string;
+  /** Film motif beside the label: clapper, reel, camera or ticket. */
+  icon?: FilmIconName;
   title: string;
   intro?: string;
   images: GalleryImage[];
@@ -49,6 +53,7 @@ export const about = {
   galleries: [
     {
       eyebrow: 'Characters',
+      icon: 'reel',
       title: 'Meet the family.',
       images: [
         {
@@ -100,6 +105,7 @@ export const about = {
     },
     {
       eyebrow: 'Behind the scenes',
+      icon: 'camera',
       title: 'On set.',
       images: [
         {
@@ -132,6 +138,7 @@ export const about = {
     },
     {
       eyebrow: 'The team',
+      icon: 'clapper',
       title: 'The people who made it.',
       images: [
         {

@@ -1,5 +1,6 @@
 import { Badge } from './Badge';
 import { Button } from './Button';
+import { TicketIcon } from './Icons';
 import { WhatsAppShare } from './WhatsAppLinks';
 import { dateParts, formatLongDate, formatTime } from '@/lib/dates';
 import {
@@ -24,13 +25,15 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
   return (
     <article
       id={screening.id}
-      className={`group grid scroll-mt-20 grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 rounded-card border border-cream-200 bg-cream-50 p-5 transition-[translate,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-navy-950/10 sm:gap-x-6 sm:p-6 ${
+      className={`group grid scroll-mt-20 grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 rounded-card border border-cream-200 bg-cream-50 p-5 transition-[translate,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-ember-500/40 hover:shadow-lg hover:shadow-ink/10 sm:gap-x-6 sm:p-6 ${
         past ? 'opacity-70' : ''
       }`}
     >
+      {/* A ticket stub: notches cut into both sides, the way a cinema ticket
+          tears. The notches are cream circles matching the card behind. */}
       <div
         aria-hidden="true"
-        className="flex w-16 flex-col items-center self-start rounded-card bg-navy-900 py-3 text-cream-50 transition-colors duration-200 group-hover:bg-navy-950"
+        className="relative flex w-16 flex-col items-center self-start rounded-card bg-ember-800 py-3 text-cream-50 transition-colors duration-200 group-hover:bg-ember-900 before:absolute before:top-1/2 before:-left-1.5 before:h-3 before:w-3 before:-translate-y-1/2 before:rounded-full before:bg-cream-50 after:absolute after:top-1/2 after:-right-1.5 after:h-3 after:w-3 after:-translate-y-1/2 after:rounded-full after:bg-cream-50"
       >
         <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-400">{weekday}</span>
         <span className="mt-1 font-display text-3xl font-semibold leading-none">{day}</span>
@@ -38,8 +41,8 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
       </div>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">{screening.city}</p>
-        <h3 className="mt-1 font-display text-lg font-semibold text-navy-900 sm:text-xl">{screening.venue}</h3>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember-800">{screening.city}</p>
+        <h3 className="mt-1 font-display text-lg font-semibold text-ink sm:text-xl">{screening.venue}</h3>
         <p className="mt-1 text-sm text-ink/70">{screening.address}</p>
         <p className="mt-2 text-sm font-semibold text-ink">
           <time dateTime={startsAt(screening)}>{when}</time>
@@ -53,6 +56,7 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
           <Badge>Past screening</Badge>
         ) : tickets ? (
           <Button href={tickets} external showArrow>
+            <TicketIcon className="h-4 w-4" />
             Buy tickets
             <span className="sr-only">
               {' '}
@@ -60,7 +64,7 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
             </span>
           </Button>
         ) : (
-          <p className="text-sm font-semibold text-navy-900">
+          <p className="text-sm font-semibold text-ink">
             {screening.soldAtDoor ? 'Tickets sold at the door' : 'Ticket details coming soon'}
           </p>
         )}

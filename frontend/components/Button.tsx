@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRightIcon } from './Icons';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
-export type ButtonTone = 'onNavy' | 'onCream';
+export type ButtonTone = 'onDark' | 'onCream';
 
 // Shared truly-common styles only. Each variant below owns its full shape
 // (padding, radius, casing) instead of overriding base — conflicting
@@ -13,24 +13,24 @@ export type ButtonTone = 'onNavy' | 'onCream';
 // an action feels physical. Transform-only, so it stays smooth on a cheap
 // phone. Reduced motion collapses the durations (app/globals.css).
 const base =
-  'inline-flex items-center gap-2 transition-[color,background-color,border-color,box-shadow,translate] duration-200 ease-out active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
+  'inline-flex items-center gap-2 transition-[color,background-color,border-color,box-shadow,translate] duration-200 ease-out active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
 
 // whitespace-nowrap: a pill label that wraps ("BUY / TICKETS") reads as broken.
 const shapeSolid =
-  'justify-center whitespace-nowrap rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy-950/20 [&_svg]:transition-transform [&_svg]:duration-200 hover:[&_svg]:translate-x-1';
+  'justify-center whitespace-nowrap rounded-pill px-6 py-3 text-sm font-semibold uppercase tracking-wide hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ink/20 [&_svg]:transition-transform [&_svg]:duration-200 hover:[&_svg]:translate-x-1';
 
 const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
   primary: {
-    onNavy: `${shapeSolid} bg-gold-500 text-navy-900 hover:bg-gold-400 focus-visible:ring-offset-navy-900`,
-    onCream: `${shapeSolid} bg-gold-500 text-navy-900 hover:bg-gold-400 focus-visible:ring-offset-cream-50`,
+    onDark: `${shapeSolid} bg-gold-400 text-ink hover:bg-gold-300 focus-visible:ring-gold-400 focus-visible:ring-offset-ember-950`,
+    onCream: `${shapeSolid} bg-ember-600 text-cream-50 hover:bg-ember-800 focus-visible:ring-ember-500 focus-visible:ring-offset-cream-50`,
   },
   secondary: {
-    onNavy: `${shapeSolid} border border-cream-50 text-cream-50 hover:bg-cream-50/10 focus-visible:ring-offset-navy-900`,
-    onCream: `${shapeSolid} border border-navy-900 text-navy-900 hover:bg-navy-900/5 focus-visible:ring-offset-cream-50`,
+    onDark: `${shapeSolid} border border-cream-50 text-cream-50 hover:bg-cream-50/10 focus-visible:ring-gold-400 focus-visible:ring-offset-ember-950`,
+    onCream: `${shapeSolid} border border-ink text-ink hover:bg-ink/5 focus-visible:ring-ember-500 focus-visible:ring-offset-cream-50`,
   },
   ghost: {
-    onNavy: 'hit-area underline-grow text-sm font-medium text-cream-50 hover:text-gold-400',
-    onCream: 'hit-area underline-grow text-sm font-medium text-navy-900 hover:text-gold-600',
+    onDark: 'hit-area underline-grow text-sm font-semibold text-cream-50 hover:text-gold-400 focus-visible:ring-gold-400',
+    onCream: 'hit-area underline-grow text-sm font-semibold text-ink hover:text-ember-600 focus-visible:ring-ember-500',
   },
 };
 

@@ -5,6 +5,8 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Figure } from '@/components/Figure';
 import { VideoEmbed } from '@/components/VideoEmbed';
+import { FilmFrame } from '@/components/FilmStrip';
+import { ClapperboardIcon } from '@/components/Icons';
 import { film } from '@/content/film';
 import { formatDate } from '@/lib/dates';
 
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 function ComingSoon({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <Card className="max-w-2xl">
-      <p className="text-sm font-semibold uppercase tracking-wide text-gold-600">{label}</p>
+      <p className="text-sm font-semibold uppercase tracking-wide text-ember-800">{label}</p>
       <p className="mt-2 text-base leading-relaxed text-ink/80">{children}</p>
     </Card>
   );
@@ -35,7 +37,7 @@ export default function FilmPage() {
 
   return (
     <>
-      <Section tone="navy" eyebrow="The Film" image={{ src: '/heroes/film.webp', position: 'center 30%' }}>
+      <Section tone="ember" eyebrow="The Film" eyebrowIcon="reel" image={{ src: '/heroes/film.webp', position: 'center 30%' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{film.logline}</h1>
         {film.releaseDate ? (
           <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
@@ -44,23 +46,27 @@ export default function FilmPage() {
         ) : null}
         <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-100/90">{film.intro}</p>
         <div className="mt-8">
-          <Button href="/screenings" tone="onNavy" showArrow>
+          <Button href="/screenings" tone="onDark" showArrow>
             Find a screening
           </Button>
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="Trailer">
+      <Section tone="cream" eyebrow="Trailer" eyebrowIcon="reel">
+        {/* The trailer sits in a strip of film, sprocket holes down both sides. */}
         <div className="max-w-3xl">
-          {film.trailerUrl ? (
-            <VideoEmbed url={film.trailerUrl} title="Daddy Bear: official trailer" />
-          ) : (
-            <div className="flex aspect-video items-center justify-center rounded-card bg-navy-900 px-6 text-center">
-              <p className="text-sm text-cream-100/80">
-                The trailer lands here first. Join the list to be told the moment it&apos;s out.
-              </p>
-            </div>
-          )}
+          <FilmFrame>
+            {film.trailerUrl ? (
+              <VideoEmbed url={film.trailerUrl} title="Daddy Bear: official trailer" />
+            ) : (
+              <div className="flex aspect-video flex-col items-center justify-center gap-3 rounded-sm bg-ink-800 px-6 text-center">
+                <ClapperboardIcon className="h-10 w-10 text-gold-400" />
+                <p className="max-w-xs text-sm text-cream-100/80">
+                  The trailer lands here first. Join the list to be told the moment it&apos;s out.
+                </p>
+              </div>
+            )}
+          </FilmFrame>
         </div>
       </Section>
 
@@ -79,12 +85,12 @@ export default function FilmPage() {
         )}
       </Section>
 
-      <Section tone="cream" eyebrow="Cast & credits">
+      <Section tone="cream" eyebrow="Cast & credits" eyebrowIcon="clapper">
         {castPhotos ? (
           <div className="mb-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
             {film.cast.map((member) => (
               <div key={member.name}>
-                <div className="relative aspect-4/5 overflow-hidden rounded-card bg-navy-700">
+                <div className="relative aspect-4/5 overflow-hidden rounded-card bg-ember-900">
                   {member.photo ? (
                     <Image
                       src={member.photo}
@@ -95,7 +101,7 @@ export default function FilmPage() {
                     />
                   ) : null}
                 </div>
-                <p className="mt-3 font-display text-lg font-semibold text-navy-900">{member.name}</p>
+                <p className="mt-3 font-display text-lg font-semibold text-ink">{member.name}</p>
                 <p className="text-sm text-ink/70">{member.role}</p>
               </div>
             ))}
@@ -104,12 +110,13 @@ export default function FilmPage() {
         {billing.length > 0 ? (
           // The billing block, laid out like the credits on a poster: role on
           // the left, names on the right, stacked on a phone.
-          <dl className="max-w-2xl divide-y divide-cream-200 border-y border-cream-200">
+          <dl className="divide-y divide-cream-200 border-y border-cream-200">
             {billing.map((line) => (
-              <div key={line.role} className="grid gap-2 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6">
-                <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">{line.role}</dt>
+              <div key={line.role} className="grid gap-2 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6 lg:grid-cols-[14rem_1fr]">
+                <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-ember-800">{line.role}</dt>
                 <dd>
-                  <ul className="space-y-1 text-base text-navy-900">
+                  {/* Names flow into columns across the full width. */}
+                  <ul className="grid gap-x-8 gap-y-1 text-base text-ink sm:grid-cols-2 lg:grid-cols-3">
                     {line.names.map((name) => (
                       <li key={name}>{name}</li>
                     ))}

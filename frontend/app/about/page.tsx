@@ -30,7 +30,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <Section tone="navy" eyebrow="About & Mission" image={{ src: '/heroes/about.webp' }}>
+      <Section tone="ember" eyebrow="About & Mission" eyebrowIcon="reel" image={{ src: '/heroes/about.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">{about.title}</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream-100/90">{lead}</p>
       </Section>
@@ -48,8 +48,11 @@ export default function AboutPage() {
       </Section>
 
       {about.galleries.map((gallery, index) => (
-        <Section key={gallery.eyebrow} tone={index % 2 === 0 ? 'cream-alt' : 'cream'} eyebrow={gallery.eyebrow}>
-          <h2 className="mb-8 max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+        <Section key={gallery.eyebrow} tone={index % 2 === 0 ? 'cream-alt' : 'cream'}
+          eyebrow={gallery.eyebrow}
+          eyebrowIcon={gallery.icon}
+        >
+          <h2 className="mb-8 max-w-2xl font-display text-2xl font-semibold text-ink sm:text-3xl">
             {gallery.title}
           </h2>
           <PhotoGallery label={gallery.eyebrow} images={gallery.images.map(withFullSize)} />
@@ -59,14 +62,14 @@ export default function AboutPage() {
       <Section tone="cream" eyebrow="Supported by">
         {/* Funder credit, in the exact wording Cardinal's pack requires. Partner
             logos go beside it once supplied, per the partners' brand guidelines. */}
-        <p className="font-display text-xl font-semibold text-navy-900 sm:text-2xl">{SUPPORT_CREDIT}</p>
+        <p className="font-display text-xl font-semibold text-ink sm:text-2xl">{SUPPORT_CREDIT}</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/70">
           Through the Entertainment and Media Hubs Program, powered by CcHUB Creative Economy Practice.
         </p>
       </Section>
 
       <Section tone="cream" eyebrow="Press & partners">
-        <h2 className="max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+        <h2 className="max-w-2xl font-display text-2xl font-semibold text-ink sm:text-3xl">
           Writing about Daddy Bear, or want to work with us?
         </h2>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">
@@ -89,7 +92,7 @@ export default function AboutPage() {
           General, press, partnership and screening enquiries:{' '}
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold-600"
+            className="font-semibold text-ink underline underline-offset-4 hover:text-ember-600"
           >
             {CONTACT_EMAIL}
           </a>

@@ -51,7 +51,7 @@ export function Countdown({
   const arrived = timeLeft && Object.values(timeLeft).every((n) => n === 0);
 
   return (
-    <div className="rounded-card border border-navy-700 bg-navy-950 p-6 text-cream-50 sm:p-8">
+    <div className="rounded-card border border-ink-800 bg-ink p-6 text-cream-50 sm:p-8">
       {!timeLeft ? (
         <div className="h-16" aria-hidden="true" />
       ) : arrived ? (

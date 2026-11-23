@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ScreeningsPage() {
   return (
     <>
-      <Section tone="navy" eyebrow="Screenings & Tickets" image={{ src: '/heroes/screenings.webp' }}>
+      <Section tone="ember" eyebrow="Screenings & Tickets" eyebrowIcon="ticket" image={{ src: '/heroes/screenings.webp' }}>
         <h1 className="max-w-2xl font-display text-4xl font-semibold sm:text-5xl">Watch it together.</h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/90">
           Daddy Bear is made to be watched in company: in cinemas, mosques, schools and community centres.
@@ -26,8 +26,8 @@ export default function ScreeningsPage() {
         <ScreeningsList screenings={screenings} buildDay={todayInLagos()} />
       </Section>
 
-      <Section tone="cream-alt" eyebrow="Host a screening">
-        <h2 className="max-w-2xl font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+      <Section tone="cream-alt" eyebrow="Host a screening" eyebrowIcon="ticket">
+        <h2 className="max-w-2xl font-display text-2xl font-semibold text-ink sm:text-3xl">
           Bring Daddy Bear to your community.
         </h2>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">

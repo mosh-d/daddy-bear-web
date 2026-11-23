@@ -3,8 +3,8 @@
  *
  * Tailwind v4 reads theme values from CSS custom properties inside an
  * `@theme` block (no tailwind.config.ts). Every variable declared here
- * becomes a utility automatically: --color-navy-900 -> bg-navy-900,
- * text-navy-900, border-navy-900, etc. --font-display -> font-display.
+ * becomes a utility automatically: --color-ember-800 -> bg-ember-800,
+ * text-ember-800, border-ember-800, etc. --font-display -> font-display.
  *
  * This file is imported once, from app/globals.css. Do not redeclare
  * these values elsewhere — components should only ever reference the
@@ -16,33 +16,48 @@
  */
 
 @theme {
-  /* Navy — brand primary. 950/900 for large dark surfaces (hero, footer),
-     700 for borders/dividers on navy, 500 for muted text on navy. */
-  --color-navy-950: #0f1b30;
-  --color-navy-900: #17253f;
-  --color-navy-700: #2c3e63;
-  --color-navy-500: #62759e;
+  /* Palette from the Daddy Bear Brand Guide v1.0 (October 2026). Brand
+     balance: 40% Cream, 25% Ember, 15% Ink, 12% Gold, 8% Deep Ember.
+     Contrast ratios below are against cream-50 unless noted. */
 
-  /* Cream — brand secondary, the warm light surface. 50 is the page
-     background, 100/200 step up for alternating section/card backgrounds. */
-  --color-cream-50: #fbf7ee;
-  --color-cream-100: #f4efe1;
-  --color-cream-200: #eae0c8;
+  /* Ember — brand primary. 500 is the guide's Ember Red (#DB4126): large
+     fills, big headlines, icons (3.9:1, large text only). 600 is the same
+     hue darkened for buttons, links and small text on cream (5.4:1). 800 is
+     the guide's Deep Ember (#9A2219): the hero surface and eyebrow labels on
+     cream (7.2:1). 900 is the deepest shade, for gradients and placeholders. */
+  --color-ember-500: #db4126;
+  --color-ember-600: #b9311b;
+  --color-ember-800: #9a2219;
+  --color-ember-900: #6e1610;
 
-  /* Gold — accent only. Reserve for CTAs, eyebrow labels, key numerals,
-     dividers. Never a large fill — it loses restraint at scale. */
-  --color-gold-400: #d9b166;
-  --color-gold-500: #c2953a;
-  --color-gold-600: #9c7527;
+  /* Muted embers for the hero: Deep Ember pulled toward Ink and slightly
+     desaturated, so a full-width red surface stays warm without shouting.
+     950 is the hero surface behind the text, 700 the softer red the photo
+     is blended into. */
+  --color-ember-700: #7d3528;
+  --color-ember-950: #511f19;
 
-  /* Ink — near-black text color, warmer than pure black to match the
-     cream surfaces it usually sits on. */
-  --color-ink: #201d17;
+  /* Gold — the guide's Sun Gold (#F0C847). Highlights, icons, CTAs on dark
+     surfaces. Only ever on Ink or Ember (5.0:1 on Deep Ember, 11.5:1 on
+     Ink), never small text on cream. 300 is its hover state. */
+  --color-gold-300: #f5d676;
+  --color-gold-400: #f0c847;
+
+  /* Cream — the guide's Cream (#F7F2E8) is the page background; 100/200
+     step up for alternating sections, cards and borders. */
+  --color-cream-50: #f7f2e8;
+  --color-cream-100: #efe6d4;
+  --color-cream-200: #e2d6be;
+
+  /* Ink — the guide's Ink (#141414): body text and dark surfaces (header,
+     footer). 800 is a raised surface or hairline on Ink. */
+  --color-ink: #141414;
+  --color-ink-800: #2a2724;
 
   /* Typography */
   --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
   --font-display-italic: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: 'Work Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Radii */
   --radius-card: 1rem;

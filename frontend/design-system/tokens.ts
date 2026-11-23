@@ -7,21 +7,23 @@
  */
 
 export const colors = {
-  navy950: '#0f1b30',
-  navy900: '#17253f',
-  navy700: '#2c3e63',
-  navy500: '#62759e',
-  cream50: '#fbf7ee',
-  cream100: '#f4efe1',
-  cream200: '#eae0c8',
-  gold400: '#d9b166',
-  gold500: '#c2953a',
-  gold600: '#9c7527',
-  ink: '#201d17',
+  ember500: '#db4126',
+  ember600: '#b9311b',
+  ember800: '#9a2219',
+  ember900: '#6e1610',
+  ember700: '#7d3528',
+  ember950: '#511f19',
+  gold300: '#f5d676',
+  gold400: '#f0c847',
+  cream50: '#f7f2e8',
+  cream100: '#efe6d4',
+  cream200: '#e2d6be',
+  ink: '#141414',
+  ink800: '#2a2724',
 } as const;
 
 export const fonts = {
   display: "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
   displayItalic: "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
-  body: "'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif",
+  body: "'Work Sans', ui-sans-serif, system-ui, -apple-system, sans-serif",
 } as const;

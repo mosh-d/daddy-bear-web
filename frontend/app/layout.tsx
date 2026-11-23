@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fraunces, Inter } from 'next/font/google';
+import { Fraunces, Work_Sans } from 'next/font/google';
 import './globals.css';
 import { colors } from '@/design-system/tokens';
 import { NavBar } from '@/components/NavBar';
@@ -27,9 +27,11 @@ const frauncesItalic = Fraunces({
   preload: false,
 });
 
-const inter = Inter({
+// Body and UI face per the Brand Guide (p.3): Work Sans, Regular and SemiBold.
+const workSans = Work_Sans({
   variable: '--font-body',
   subsets: ['latin'],
+  weight: ['400', '600'],
 });
 
 export const metadata: Metadata = {
@@ -61,12 +63,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: colors.navy900,
+  themeColor: colors.ink,
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${frauncesItalic.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesItalic.variable} ${workSans.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-cream-50 font-body text-ink antialiased">
         <NavBar />
         <main className="flex-1">{children}</main>

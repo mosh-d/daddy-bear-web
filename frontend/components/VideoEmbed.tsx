@@ -17,14 +17,14 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
 
   if (!id) {
     return (
-      <a href={url} target="_blank" rel="noopener noreferrer" className="font-semibold text-navy-900 underline">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline">
         Watch: {title}
       </a>
     );
   }
 
   return (
-    <div className="relative aspect-video overflow-hidden rounded-card bg-navy-950">
+    <div className="relative aspect-video overflow-hidden rounded-card bg-ink">
       {playing ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
@@ -37,7 +37,7 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
         <button
           type="button"
           onClick={() => setPlaying(true)}
-          className="group absolute inset-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold-500"
+          className="group absolute inset-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ember-500"
         >
           <Image
             src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
@@ -46,7 +46,7 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
             sizes="(min-width: 768px) 720px, 100vw"
             className="object-cover opacity-80 transition-opacity group-hover:opacity-100"
           />
-          <span className="relative flex h-16 w-16 items-center justify-center rounded-pill bg-gold-500 text-navy-900 shadow-lg transition-[background-color,scale] duration-200 ease-out group-hover:scale-110 group-hover:bg-gold-400">
+          <span className="relative flex h-16 w-16 items-center justify-center rounded-pill bg-gold-400 text-ink shadow-lg transition-[background-color,scale] duration-200 ease-out group-hover:scale-110 group-hover:bg-gold-300">
             <PlayIcon className="ml-1 h-7 w-7" />
           </span>
           <span className="sr-only">Play video: {title}</span>

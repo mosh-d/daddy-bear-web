@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from './Container';
+import { FilmStrip } from './FilmStrip';
 import { NewsletterSignup } from './NewsletterSignup';
 import { SocialLinks } from './SocialLinks';
 import { SubstackEmbed } from './SubstackEmbed';
@@ -27,19 +29,21 @@ const LINKS = [
  */
 export function Footer() {
   return (
-    <footer id="join" className="scroll-mt-16 bg-navy-950 py-16 text-cream-50 sm:py-20">
+    <footer id="join" className="scroll-mt-16 bg-ink pb-16 text-cream-50 sm:pb-20">
+      {/* The page ends the way a reel does: on a strip of film. */}
+      <FilmStrip className="mb-16 sm:mb-20" />
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
           <div>
-            <p className="font-display text-xl font-semibold uppercase tracking-wide">Daddy Bear</p>
+            <Image src="/brand/wordmark-gold-sm.png" alt="Daddy Bear" width={400} height={50} className="h-6 w-auto" />
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream-100/80">
               The newsletter and our WhatsApp channel are how we share screenings, gifts and news from
               the production first, before social media.
             </p>
             <div className="mt-6 flex flex-col items-start gap-4">
-              <WhatsAppCTA tone="onNavy" />
+              <WhatsAppCTA tone="onDark" />
               <WhatsAppChat
-                tone="onNavy"
+                tone="onDark"
                 message="Hello Daddy Bear team, I have a question."
                 label="Questions? Chat with us"
               />
@@ -63,7 +67,7 @@ export function Footer() {
               <SubstackEmbed />
             </div>
             <div className="mt-4">
-              <NewsletterSignup tone="onNavy" />
+              <NewsletterSignup tone="onDark" />
             </div>
           </div>
         </div>
@@ -81,11 +85,15 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="mt-6 border-t border-navy-700 pt-6 text-xs text-cream-100/60">
+        <div className="mt-6 border-t border-ink-800 pt-6 text-xs text-cream-100/60">
           {/* Funder credit, in the exact wording Cardinal's pack requires. */}
           <p className="text-cream-100/80">{SUPPORT_CREDIT}</p>
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p>&copy; {new Date().getFullYear()} Daddy Bear. A Cardinal Productions film.</p>
+            <div className="flex items-center gap-3">
+              {/* The primary icon (gold on Ember), one of the four approved colourways. */}
+              <Image src="/brand/icon-primary.webp" alt="" width={96} height={96} className="h-8 w-8" />
+              <p>&copy; {new Date().getFullYear()} Daddy Bear. A Cardinal Productions film.</p>
+            </div>
             <a
               href={CARDINAL_STUDIO_URL}
               target="_blank"

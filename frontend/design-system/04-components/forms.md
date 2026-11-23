@@ -15,7 +15,7 @@ The pattern to follow, and what the removed Kit form did:
 
 - **React Hook Form + Zod**, validating in the browser before handing anything to a third party; there is no API of our own to check again. Use `zod/mini` for anything that ships on every page — full Zod cost ~55KB gzipped per page.
 - **Label above the field**, never placeholder-as-label: placeholders are supplementary hint text only, since placeholder-only labels fail accessibility and vanish the moment someone starts typing.
-- Field: `bg-cream-50 border border-cream-200 rounded-card px-4 py-3 text-base`, focus ring `gold-500`. Error state: red border plus one line of error text below, tied to the field with `aria-describedby`, in `red-600` on cream and `red-300` on navy (red-600 fails contrast on navy).
+- Field: `bg-cream-50 border border-cream-200 rounded-card px-4 py-3 text-base`, focus ring `ember-500`. Error state: red border plus one line of error text below, tied to the field with `aria-describedby`, in `red-600` on cream and `red-300` on navy (red-600 fails contrast on navy).
 - **Unique field IDs per instance** (`useId`): a form that appears twice on a page, as the newsletter did, otherwise has two labels pointing at the same input.
 - **Progressive enhancement:** give the form the third party's own URL as its `action` and `method="post"`. On a slow connection the form is visible seconds before its JavaScript, and a submit in that window must still reach the service instead of reloading the page with the email address in the URL.
 - Success replaces the form with a short confirmation (`role="status"`), errors appear inline (`role="alert"`). Never a page reload.
