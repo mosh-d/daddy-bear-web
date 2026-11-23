@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
-  // Fully static site for Cloudflare Pages: `next build` writes plain
+  // Fully static site for Cloudflare: `next build` writes plain
   // HTML/CSS/JS to out/. This rules out SSR, API routes, middleware and
   // ISR on purpose — see ../CLAUDE.md (golden rules 1 and 2).
   output: 'export',

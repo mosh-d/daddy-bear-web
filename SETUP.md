@@ -8,35 +8,39 @@ Work through this in order. Steps 1–2 get the site live; 3–6 switch on each 
 
 | Kind of setting | Where | Takes effect |
 |---|---|---|
-| Service IDs and tokens (WhatsApp, Tally, analytics) | Cloudflare Pages → Settings → **Environment variables** | On the next deployment |
+| Service IDs and tokens (WhatsApp, Tally, analytics) | Cloudflare → the `daddy-bear-web` Worker → Settings → Build → **Build variables** | On the next deployment |
 | Public brand links (Substack, socials, contact email) | `frontend/content/links.ts` in the repo | On push |
 
-**Important:** environment variables are read when the site is *built*, not when someone visits. After adding or changing one in Cloudflare, start a new deployment (Deployments → Retry deployment), or the site keeps the old value.
+**Important:** environment variables are read when the site is *built*, not when someone visits. After adding or changing one in Cloudflare, start a new deployment (Deployments → retry the latest build, or push), or the site keeps the old value. They are *build* variables, not runtime "Variables and secrets": the site has no server code that could read the latter.
 
 ---
 
-## 1. Cloudflare account and the Pages project
+## 1. Cloudflare account and the Worker
 
 **Who:** Cardinal owns the account; the developer can do the setup.
 **Time:** ~20 minutes, plus DNS propagation.
 
+The site deploys as a Cloudflare **Worker with static assets**: Cloudflare serves the built files from its edge, free, with no server code. `frontend/wrangler.jsonc` tells Cloudflare exactly that (serve the `out/` folder), so don't let Cloudflare "auto-configure" the project as a server-rendered Next.js app.
+
 1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com) (or sign in to Cardinal's).
 2. Add the domain **daddybearfilm.com** to Cloudflare: *Add a site* → enter the domain → Free plan. Cloudflare gives you two nameservers.
 3. At the registrar where `daddybearfilm.com` is registered, replace the existing nameservers with Cloudflare's two. This can take a few hours to take effect.
-4. In Cloudflare: *Workers & Pages* → **Create** → **Pages** → **Connect to Git** → authorise GitHub → pick the `daddy-bear-web` repository.
-5. Build settings — these matter, and the defaults are wrong for this site:
+4. In Cloudflare: *Workers & Pages* → **Create** → **Workers** → **Import a repository** → authorise GitHub → pick the `daddy-bear-web` repository.
+5. Build settings:
 
    | Setting | Value |
    |---|---|
-   | Framework preset | **None** (not "Next.js": that preset expects a server; this site is a static export) |
+   | Project / Worker name | `daddy-bear-web` (must match `name` in `frontend/wrangler.jsonc`) |
+   | Root directory (path) | `frontend` |
    | Build command | `npm run build` |
-   | Build output directory | `out` |
-   | Root directory | `frontend` |
+   | Deploy command | `npx wrangler deploy` |
 
-6. Click **Save and Deploy**. The first build takes a few minutes. You'll get a `*.pages.dev` address — check the site loads there.
-7. *Custom domains* → **Set up a domain** → `daddybearfilm.com`. Repeat for `www.daddybearfilm.com` if you want it. Cloudflare adds the DNS records itself.
+6. Deploy. The first build takes a few minutes. You'll get a `*.workers.dev` address — check the site loads there.
+7. The Worker → *Settings* → **Domains & Routes** → **Add** → *Custom domain* → `daddybearfilm.com`. Repeat for `www.daddybearfilm.com` if you want it. Cloudflare adds the DNS records itself.
 
 From here, every push to `main` deploys automatically.
+
+**While Vercel still serves the site:** the two can run side by side. Check the `*.workers.dev` address first, then move the domain to Cloudflare (steps 2–3 and 7) and remove the project from Vercel.
 
 ---
 
@@ -66,7 +70,7 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 1. **Channel:** in WhatsApp → *Updates* → **+** → *New channel*. Name it Daddy Bear, add the logo and a one-line description.
 2. Channel → *Share channel link* → copy it. It looks like `https://whatsapp.com/channel/0029Xxxxxxxx`.
 3. **Number for direct chat:** decide which number replies to enquiries (a dedicated SIM or WhatsApp Business app is easier to share among the team than someone's personal line).
-4. In Cloudflare Pages → Settings → Environment variables, add:
+4. In Cloudflare → the Worker → Settings → Build → Build variables, add:
 
    ```
    NEXT_PUBLIC_WHATSAPP_CHANNEL_URL = https://whatsapp.com/channel/your-link
@@ -105,7 +109,7 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 3. Keep it short: every extra question loses applicants on a phone.
 4. Form settings → **Notifications** → send submissions to `cardinalproductionsng@gmail.com`, so applications don't sit unseen in Tally.
 5. **Publish** the form, then copy its link: `https://tally.so/r/XXXXXX`. The part after `/r/` is the form ID.
-6. In Cloudflare Pages → Environment variables:
+6. In Cloudflare → the Worker → Settings → Build → Build variables:
 
    ```
    NEXT_PUBLIC_TALLY_FORM_ID = XXXXXX
@@ -147,8 +151,13 @@ The site doesn't collect email addresses itself — Substack doesn't accept sign
 No cookies, so no consent banner is needed under the NDPA, and it's free and unlimited.
 
 1. Cloudflare dashboard → *Analytics & Logs* → **Web Analytics** → add `daddybearfilm.com`.
-2. Easiest route: in your Pages project → *Settings* → **Enable Web Analytics**. Cloudflare injects it; leave `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` **unset** so it isn't loaded twice.
-3. If you'd rather the site load it, copy the token from the beacon snippet and set `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` instead, then redeploy.
+2. Choose the manual (JS snippet) setup, copy the token from the beacon snippet, and set it as a build variable:
+
+   ```
+   NEXT_PUBLIC_CF_ANALYTICS_TOKEN = <token>
+   ```
+
+   Then redeploy. Let the site load it this way rather than having Cloudflare inject it: the privacy policy names the analytics in use from this variable, so it stays accurate.
 
 ### Alternative: Google Analytics 4
 

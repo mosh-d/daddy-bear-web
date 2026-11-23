@@ -2,7 +2,7 @@
  * Every third-party URL and ID the site uses, read once from env. They're
  * all NEXT_PUBLIC_ because a static export has no runtime environment —
  * Next.js bakes them into the HTML/JS at build time, so changing one in
- * Cloudflare Pages needs a redeploy. Each integration hides itself when its
+ * Cloudflare needs a redeploy. Each integration hides itself when its
  * value is unset, rather than shipping a dead link or a broken embed.
  */
 

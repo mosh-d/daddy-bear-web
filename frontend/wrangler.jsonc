@@ -1,0 +1,19 @@
+// Cloudflare Workers deploy config. The site is a static export (`next build`
+// writes plain files to out/), so the Worker has no script: Cloudflare serves
+// the files in out/ directly from its edge. Having this file also stops
+// `wrangler deploy` from "auto-configuring" the project as a server-rendered
+// Next.js app (OpenNext), which can't build a static export.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "daddy-bear-web",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./out",
+    // /about serves out/about.html; unknown paths get out/404.html with a 404.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

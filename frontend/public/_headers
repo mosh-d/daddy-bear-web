@@ -1,4 +1,5 @@
-# Cloudflare Pages response headers. See https://developers.cloudflare.com/pages/configuration/headers/
+# Response headers, applied by Cloudflare to the static assets (Workers and
+# Pages both read this file). See https://developers.cloudflare.com/workers/static-assets/headers/
 
 # Next.js fingerprints everything under /_next/static (the file name changes
 # whenever the content does), so returning visitors never re-download it.

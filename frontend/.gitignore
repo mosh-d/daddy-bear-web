@@ -34,8 +34,11 @@ yarn-error.log*
 .env*
 !.env.example
 
-# vercel (legacy; the site deploys to Cloudflare Pages)
+# vercel (legacy; the site deploys to Cloudflare)
 .vercel
+
+# wrangler's local cache
+.wrangler
 
 # typescript
 *.tsbuildinfo

@@ -1,6 +1,6 @@
 # Daddy Bear website
 
-A fully static Next.js site (TypeScript, App Router, Tailwind CSS v4), exported to plain HTML/CSS/JS and hosted on Cloudflare Pages. There is no backend: the newsletter, host-a-screening form, tickets, WhatsApp and analytics are all third-party services. See `../CLAUDE.md` for the build brief, `../EXECUTION_PLAN.md` for the schedule, **`../SETUP.md` to set up the third-party services**, `design-system/` for tokens, voice and component rules, and **`CONTENT.md` for adding screenings and Journal posts**.
+A fully static Next.js site (TypeScript, App Router, Tailwind CSS v4), exported to plain HTML/CSS/JS and hosted on Cloudflare (a Worker serving static assets). There is no backend: the newsletter, host-a-screening form, tickets, WhatsApp and analytics are all third-party services. See `../CLAUDE.md` for the build brief, `../EXECUTION_PLAN.md` for the schedule, **`../SETUP.md` to set up the third-party services**, `design-system/` for tokens, voice and component rules, and **`CONTENT.md` for adding screenings and Journal posts**.
 
 ## Getting started
 
@@ -18,21 +18,24 @@ Open [http://localhost:3000](http://localhost:3000). The site runs with no env v
 |---|---|
 | `npm run dev` | Local dev server |
 | `npm run build` | Static export to `out/`, then the page-weight budget check (fails if a page is too heavy) |
-| `npm run preview` | Serves `out/` locally, with the same clean URLs as Cloudflare Pages |
+| `npm run preview` | Serves `out/` locally, with the same clean URLs as Cloudflare |
 | `npm run lint` | ESLint |
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare
 
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → **Connect to Git** → this repo.
+The site deploys as a Cloudflare Worker with static assets: `wrangler.jsonc` points Wrangler at `out/`, so Cloudflare serves the exported files and runs no server code. Without that file, `wrangler deploy` tries to auto-configure the project as a server-rendered Next.js app (OpenNext), which fails on a static export.
+
+1. Cloudflare dashboard → Workers & Pages → Create → Workers → **Import a repository** → this repo.
 2. Build settings:
-   - **Framework preset: None.** Not "Next.js": that preset expects a server build, and this site is a static export.
    - **Root directory:** `frontend`
    - **Build command:** `npm run build`
-   - **Build output directory:** `out`
+   - **Deploy command:** `npx wrangler deploy`
    - Node version comes from `.node-version` (22).
-3. Settings → Environment variables: add everything from `.env.example` for Production (and Preview if wanted). These are baked in at build time, so **redeploy after changing one**. Step-by-step for each service: `../SETUP.md`.
-4. Custom domains → add `daddybearfilm.com` (and `www.daddybearfilm.com`). The domain's DNS must be on Cloudflare.
-5. Cloudflare Web Analytics can be switched on for the Pages project without any code. If you do that, leave `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` unset so the beacon doesn't load twice.
+3. Settings → Build → **Build variables**: add everything from `.env.example`. These are baked in at build time, so **redeploy after changing one**. Step-by-step for each service: `../SETUP.md`.
+4. Settings → Domains & Routes → add `daddybearfilm.com` (and `www.daddybearfilm.com`) as custom domains. The domain's DNS must be on Cloudflare.
+5. Analytics: set `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` (Cloudflare Web Analytics, manual setup) rather than letting Cloudflare inject the beacon, so the privacy policy, which names whichever analytics is configured, stays accurate.
+
+To check a deploy locally: `npm run build && npx wrangler deploy --dry-run`.
 
 Every push to `main` deploys. `public/_headers` sets long-lived caching for fingerprinted assets and basic security headers.
 

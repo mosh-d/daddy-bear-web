@@ -1,6 +1,6 @@
 # Updating the site's content
 
-Everything editable lives in `frontend/content/`. Each change is **one file, then a push to `main`**: Cloudflare Pages rebuilds and the change is live in a couple of minutes. There's no CMS and no login.
+Everything editable lives in `frontend/content/`. Each change is **one file, then a push to `main`**: Cloudflare rebuilds and the change is live in a couple of minutes. There's no CMS and no login.
 
 If you make a mistake in a content file (a missing field, a date in the wrong format, an image that isn't there), **the build fails with a message naming the file and the problem**, and the live site stays as it was. To catch it before pushing, run `npm run build` locally.
 

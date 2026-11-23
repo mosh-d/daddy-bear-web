@@ -4,7 +4,8 @@ import { Button } from '@/components/Button';
 
 export const metadata: Metadata = { title: 'Page not found' };
 
-// Exported as out/404.html, which Cloudflare Pages serves for any unknown path.
+// Exported as out/404.html, which Cloudflare serves for any unknown path
+// (`not_found_handling` in wrangler.jsonc).
 export default function NotFound() {
   return (
     <Section tone="ember" eyebrow="Page not found" image={{ src: '/heroes/not-found.webp', position: 'center 30%' }}>
