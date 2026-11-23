@@ -82,9 +82,6 @@ export function ScreeningCard({ screening, past = false }: { screening: Screenin
             <span className="text-xs font-semibold uppercase tracking-[0.2em]">{month}</span>
           </div>
           <span className="text-sm font-semibold sm:mt-2">{formatTime(screening.time)}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-cream-100/70 sm:mt-3">
-            Admit one
-          </span>
         </div>
       </article>
     </div>

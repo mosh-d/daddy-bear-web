@@ -16,6 +16,6 @@ Thumbnail (`next/image`, 16:9, `rounded-card`), date + tag `Badge`, title (`font
 
 ## ScreeningCard
 
-[`components/ScreeningCard.tsx`](../../components/ScreeningCard.tsx). Drawn as a cinema ticket: the main part (city eyebrow with a ticket icon, venue, address, full date and time, then the actions) on cream, and a Deep Ember stub carrying weekday, day, month, time and "Admit one", separated by a dashed perforation. Notches are cut out of both edges at the perforation with a CSS mask (`.ticket` in `app/globals.css`), and the drop shadow sits on a wrapper so the mask doesn't clip it. The stub is on the right from tablet up and along the bottom on a phone.
+[`components/ScreeningCard.tsx`](../../components/ScreeningCard.tsx). Drawn as a cinema ticket: the main part (city eyebrow with a ticket icon, venue, address, full date and time, then the actions) on cream, and a Deep Ember stub carrying weekday, day, month and time, separated by a dashed perforation. Notches are cut out of both edges at the perforation with a CSS mask (`.ticket` in `app/globals.css`), and the drop shadow sits on a wrapper so the mask doesn't clip it. The stub is on the right from tablet up and along the bottom on a phone.
 
 Layout is a two-column grid (date block | details). Below `sm` the action row spans both columns, under the date block, because the details column is only ~170px wide on a 320px phone, too narrow for **Buy tickets** beside **Share on WhatsApp**. From `sm` up the actions sit under the details.
